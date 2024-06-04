@@ -1,0 +1,43 @@
+{
+  "id": "photo",
+  "type": "SharedSlice",
+  "name": "Photo",
+  "description": "Photo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "public_id": {
+          "type": "Text",
+          "config": {
+            "label": "Public ID",
+            "placeholder": ""
+          }
+        },
+        "photo_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Photo Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "photo": {
+          "type": "Image",
+          "config": {
+            "label": "Photo",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
