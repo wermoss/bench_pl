@@ -32,13 +32,13 @@ export default defineNuxtConfig({
           path: "/:uid",
         },
         {
+          type: "article",
+          path: "/blog/:uid",
+        },
+        {
           type: "page",
           uid: "home",
           path: "/",
-        },
-        {
-          type: "article",
-          path: "/articles/:uid",
         },
       ],
     },

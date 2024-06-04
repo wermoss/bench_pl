@@ -102,7 +102,7 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PageDocumentDataSlicesSlice = PhotoSlice | RichTextSlice;
 
 /**
  * Content for Page documents
