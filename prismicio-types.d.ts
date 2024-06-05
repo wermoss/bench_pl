@@ -102,7 +102,11 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = TitleSlice | PhotoSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice =
+  | MySpecialSliceSlice
+  | TitleSlice
+  | PhotoSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -118,6 +122,17 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
+  /**
+   * Subtitle field in *Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -349,7 +364,27 @@ interface SettingsDocumentData {
    * - **Tab**: Footer
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  contacts: prismic.GroupField<Simplify<SettingsDocumentDataContactsItem>>;
+  contacts: prismic.GroupField<Simplify<SettingsDocumentDataContactsItem>> /**
+   * text One field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.text_one
+   * - **Tab**: Form
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  text_one: prismic.KeyTextField;
+
+  /**
+   * text Two field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.text_two
+   * - **Tab**: Form
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_two: prismic.RichTextField;
 }
 
 /**
@@ -374,19 +409,54 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *MySpecialSlice → Primary*
+ */
+export interface MySpecialSliceSliceDefaultPrimary {
+  /**
+   * test field in *MySpecialSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: my_special_slice.primary.test
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  test: prismic.RichTextField;
+}
+
+/**
+ * Default variation for MySpecialSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MySpecialSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MySpecialSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MySpecialSlice*
+ */
+type MySpecialSliceSliceVariation = MySpecialSliceSliceDefault;
+
+/**
+ * MySpecialSlice Shared Slice
+ *
+ * - **API ID**: `my_special_slice`
+ * - **Description**: MySpecialSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MySpecialSliceSlice = prismic.SharedSlice<
+  "my_special_slice",
+  MySpecialSliceSliceVariation
+>;
+
+/**
  * Primary content in *Photo → Primary*
  */
 export interface PhotoSliceDefaultPrimary {
-  /**
-   * Public ID field in *Photo → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: photo.primary.public_id
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  public_id: prismic.KeyTextField;
-
   /**
    * Photo Description field in *Photo → Primary*
    *
@@ -552,6 +622,10 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataContactsItem,
       AllDocumentTypes,
+      MySpecialSliceSlice,
+      MySpecialSliceSliceDefaultPrimary,
+      MySpecialSliceSliceVariation,
+      MySpecialSliceSliceDefault,
       PhotoSlice,
       PhotoSliceDefaultPrimary,
       PhotoSliceVariation,

@@ -3,40 +3,38 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"public_id": {
-				"__TYPE__": "FieldContent",
-				"value": "region",
-				"type": "Text"
-			},
 			"photo_description": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Est adipisicing ipsum laboris aliqua qui in quis."
-						}
+							"text": "To jest przykładowy tekst opisu",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
 			"photo": {
 				"__TYPE__": "ImageContent",
+				"url": "https://images.unsplash.com/photo-1590004828948-09db7606e5ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MTc1NDk3MjN8MA&ixlib=rb-4.0.3&q=85",
+				"alt": "sliced orange fruit on white surface",
 				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
-					"width": 4016,
-					"height": 6016
+					"id": "92HwFhCp-MQ",
+					"url": "https://images.unsplash.com/photo-1590004828948-09db7606e5ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MTc1NDk3MjN8MA&ixlib=rb-4.0.3&q=85",
+					"width": 3699,
+					"height": 2959
 				},
-				"url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
-				"width": 4016,
-				"height": 6016,
+				"width": 3699,
+				"height": 2959,
 				"edit": {
+					"background": "transparent",
 					"zoom": 1,
 					"crop": {
 						"x": 0,
 						"y": 0
-					},
-					"background": "transparent"
+					}
 				},
 				"thumbnails": {}
 			}

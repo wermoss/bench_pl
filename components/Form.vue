@@ -1,80 +1,85 @@
 <template>
-  <form
-    id="contactForm"
-    @submit.prevent="sendEmail"
-    class="tracking-wide bg-[#F3F4F6]"
-  >
-    <label for="name" class="text-sm">Imię i nazwisko</label><br />
-    <input
-      type="text"
-      id="name"
-      name="name"
-      v-model="name"
-      class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
-    /><br />
-    <label for="company" class="text-sm">Nazwa firmy</label><br />
-    <input
-      type="text"
-      id="company"
-      name="company"
-      v-model="company"
-      class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
-    /><br />
-    <label for="email" class="text-sm">Adres email</label><br />
-    <input
-      type="email"
-      id="email"
-      name="email"
-      v-model="email"
-      class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
-    /><br />
-    <label for="message" class="text-sm">Treść wiadomości</label><br />
-    <textarea
-      id="message"
-      name="message"
-      v-model="message"
-      class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
-    ></textarea
-    ><br />
-    <div class="flex py-2 mb-8">
-      <div>
-        <input
-          type="checkbox"
-          id="checkbox"
-          name="checkbox"
-          value="TAK"
-          v-model="isChecked"
-        />
+  <div class="text-3xl pb-2">Formularz kontaktowy</div>
+  <span class="block bg-[#FFCB04] h-[2px] w-20 my-2"></span>
+
+  <div class="pt-2 pb-10">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div class="bg-gray-100 p-8">
+    <form id="contactForm" @submit.prevent="sendEmail" class="tracking-wide">
+      <label for="name" class="text-sm">Imię i nazwisko</label><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        v-model="name"
+        class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      /><br />
+      <label for="company" class="text-sm">Nazwa firmy</label><br />
+      <input
+        type="text"
+        id="company"
+        name="company"
+        v-model="company"
+        class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      /><br />
+      <label for="email" class="text-sm">Adres email</label><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        v-model="email"
+        class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      /><br />
+      <label for="message" class="text-sm">Treść wiadomości</label><br />
+      <textarea
+        id="message"
+        name="message"
+        v-model="message"
+        class="w-full mt-2 mb-2 px-4 h-[200px] py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      ></textarea
+      ><br />
+      <div class="flex py-2 mb-8">
+        <div>
+          <input
+            type="checkbox"
+            id="checkbox"
+            name="checkbox"
+            value="TAK"
+            v-model="isChecked"
+          />
+        </div>
+        <div class="pl-4 text-[11px]">
+          <label for="checkbox"
+            >Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z
+            ustawą o ochronie danych osobowych w związku z formularzem
+            kontaktowym. Podanie danych jest dobrowolne, ale niezbędne do
+            przetworzenia zapytania. Zostałem /am poinformowany /a, że
+            przysługuje mi prawo dostępu do swoich danych, możliwości ich
+            poprawiania, żądania zaprzestania ich przetwarzania. Administratorem
+            danych osobowych jest Benchmarket Sp. z o.o. (KRS: 0000698774, NIP:
+            6351843655) z siedzibą w Wyrach.</label
+          >
+        </div>
       </div>
-      <div class="pl-4 text-[11px]">
-        <label for="checkbox"
-          >Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z
-          ustawą o ochronie danych osobowych w związku z formularzem
-          kontaktowym. Podanie danych jest dobrowolne, ale niezbędne do
-          przetworzenia zapytania. Zostałem /am poinformowany /a, że przysługuje
-          mi prawo dostępu do swoich danych, możliwości ich poprawiania, żądania
-          zaprzestania ich przetwarzania. Administratorem danych osobowych jest
-          Benchmarket Sp. z o.o. (KRS: 0000698774, NIP: 6351843655) z siedzibą w
-          Wyrach.</label
-        >
+      <input
+        type="submit"
+        id="submit"
+        :disabled="!isFormValid"
+        :class="
+          isFormValid
+            ? 'bg-black text-white px-4 py-2'
+            : 'bg-black/50 text-white opacity-50 border-s px-4 py-2'
+        "
+        value="Wyślij"
+      />
+      <div v-if="emailStatus === 'success'">Wiadomość wysłana pomyślnie</div>
+      <div v-if="emailStatus === 'error'">
+        Wystąpił błąd podczas wysyłania wiadomości
       </div>
-    </div>
-    <input
-      type="submit"
-      id="submit"
-      :disabled="!isFormValid"
-      :class="
-        isFormValid
-          ? 'bg-black text-white px-4 py-2'
-          : 'bg-black/50 text-white opacity-50 border-s px-4 py-2'
-      "
-      value="Wyślij"
-    />
-    <div v-if="emailStatus === 'success'">Wiadomość wysłana pomyślnie</div>
-    <div v-if="emailStatus === 'error'">
-      Wystąpił błąd podczas wysyłania wiadomości
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script setup>

@@ -3,50 +3,58 @@ import { components } from "~/slices";
 
 const prismic = usePrismic();
 const route = useRoute();
-const { data: page } = useAsyncData(route.params.uid as string, () =>
-  prismic.client.getByUID("page", route.params.uid as string)
-);
+const { data: page } = useAsyncData(route.params.uid as string, async () => {
+  const response = await prismic.client.getByUID(
+    "page",
+    route.params.uid as string
+  );
+  console.log(response);
+  return response;
+});
 
 // Pobierz dane settings z Prismic
-const { data: settings } = useAsyncData("settings", () =>
-  prismic.client.getSingle("settings")
-);
+const { data: settings } = useAsyncData("settings", async () => {
+  const response = await prismic.client.getSingle("settings");
+  console.log(response);
+  return response;
+});
 
 useSeoMeta({
-  title: page.value?.data.meta_title ?? settings.value?.data.site_title,
+  title: page.value?.data.title[0]?.text ?? settings.value?.data.site_title,
   description:
-    page.value?.data.meta_description ?? settings.value?.data.meta_description,
+    page.value?.data.subtitle[0]?.text ?? settings.value?.data.meta_description,
   ogImage:
     page.value?.data.meta_image?.url ?? settings.value?.data.og_image.url,
 });
-</script>
 
+// Dodaj console.log tutaj
+if (page.value) {
+  const title = JSON.parse(JSON.stringify(page.value.data.title));
+  const subtitle = JSON.parse(JSON.stringify(page.value.data.subtitle));
+  console.log("Title:", title);
+  console.log("Subtitle:", subtitle);
+}
+</script>
 <template>
   <section
     class="container mx-auto max-w-6xl grid lg:grid-cols-5 px-8 pb-20 gap-20"
   >
     <div class="lg:col-span-3 space-y-4">
+      <!-- Ponizej jest tekst ktory sie nie wyswietla -->
+      <div
+        v-if="page.value && page.value.data.title && page.value.data.subtitle"
+      >
+        <PrismicRichText :field="page.value.data.title" />
+        <PrismicRichText :field="page.value.data.subtitle" />
+      </div>
       <SliceZone
         wrapper="main"
         :slices="page?.data.slices ?? []"
         :components="components"
       />
-      <!-- <div class="bg-gray-100 p-8">
-        Podatek dochodowy od osób prawnych<br />Dz.U.2023.2805 Art. 264 |
-        UstLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </div> -->
     </div>
-    <div class="lg:col-span-2 sticky top-0 self-start">
-      <div class="bg-gray-100 p-8"><Form /></div>
+    <div class="lg:col-span-2 sticky top-0 self-start hidden lg:block">
+      <div><Form /></div>
     </div>
   </section>
-  <!-- <section>
-    <ArticleList />
-  </section> -->
 </template>
