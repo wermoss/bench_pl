@@ -102,7 +102,7 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = PhotoSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = TitleSlice | PhotoSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -175,6 +175,71 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
+ * Item in *Settings → Contacts*
+ */
+export interface SettingsDocumentDataContactsItem {
+  /**
+   * Full Name field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].full_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  full_name: prismic.KeyTextField;
+
+  /**
+   * Phone Number field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].phone_number
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  phone_number: prismic.KeyTextField;
+
+  /**
+   * Email field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].email
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email: prismic.KeyTextField;
+
+  /**
+   * Photo field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].photo
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  photo: prismic.KeyTextField;
+
+  /**
+   * Alt Text field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].alt_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  alt_text: prismic.KeyTextField;
+
+  /**
+   * Linkedin Profile field in *Settings → Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].linkedin_profile
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  linkedin_profile: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -209,7 +274,82 @@ interface SettingsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  og_image: prismic.ImageField<never>;
+  og_image: prismic.ImageField<never> /**
+   * Section Title field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.section_title
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  section_title: prismic.KeyTextField;
+
+  /**
+   * Section Subtitle field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.section_subtitle
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_subtitle: prismic.RichTextField;
+
+  /**
+   * Company Name field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.company_name
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  company_name: prismic.KeyTextField;
+
+  /**
+   * Address field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.address
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address: prismic.KeyTextField;
+
+  /**
+   * NIP field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.nip
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  nip: prismic.KeyTextField;
+
+  /**
+   * REGON field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.regon
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  regon: prismic.KeyTextField;
+
+  /**
+   * Contacts field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[]
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contacts: prismic.GroupField<Simplify<SettingsDocumentDataContactsItem>>;
 }
 
 /**
@@ -340,6 +480,58 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *Title → Primary*
+ */
+export interface TitleSliceDefaultPrimary {
+  /**
+   * Section Title field in *Title → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: title.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  section_title: prismic.KeyTextField;
+
+  /**
+   * Section Subtitle field in *Title → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: title.primary.section_subtitle
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_subtitle: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Title Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TitleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TitleSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Title*
+ */
+type TitleSliceVariation = TitleSliceDefault;
+
+/**
+ * Title Shared Slice
+ *
+ * - **API ID**: `title`
+ * - **Description**: Title
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TitleSlice = prismic.SharedSlice<"title", TitleSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -358,6 +550,7 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataContactsItem,
       AllDocumentTypes,
       PhotoSlice,
       PhotoSliceDefaultPrimary,
@@ -367,6 +560,10 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      TitleSlice,
+      TitleSliceDefaultPrimary,
+      TitleSliceVariation,
+      TitleSliceDefault,
     };
   }
 }

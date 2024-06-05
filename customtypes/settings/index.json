@@ -33,7 +33,103 @@
       }
     },
     "Header": {},
-    "Footer": {},
+    "Footer": {
+      "section_title": {
+        "type": "Text",
+        "config": {
+          "label": "Section Title",
+          "placeholder": ""
+        }
+      },
+      "section_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Section Subtitle",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "company_name": {
+        "type": "Text",
+        "config": {
+          "label": "Company Name",
+          "placeholder": ""
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address",
+          "placeholder": ""
+        }
+      },
+      "nip": {
+        "type": "Text",
+        "config": {
+          "label": "NIP",
+          "placeholder": ""
+        }
+      },
+      "regon": {
+        "type": "Text",
+        "config": {
+          "label": "REGON",
+          "placeholder": ""
+        }
+      },
+      "contacts": {
+        "type": "Group",
+        "config": {
+          "label": "Contacts",
+          "repeat": true,
+          "fields": {
+            "full_name": {
+              "type": "Text",
+              "config": {
+                "label": "Full Name",
+                "placeholder": ""
+              }
+            },
+            "phone_number": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Number",
+                "placeholder": ""
+              }
+            },
+            "email": {
+              "type": "Text",
+              "config": {
+                "label": "Email",
+                "placeholder": ""
+              }
+            },
+            "photo": {
+              "type": "Text",
+              "config": {
+                "label": "Photo",
+                "placeholder": ""
+              }
+            },
+            "alt_text": {
+              "type": "Text",
+              "config": {
+                "label": "Alt Text",
+                "placeholder": ""
+              }
+            },
+            "linkedin_profile": {
+              "type": "Text",
+              "config": {
+                "label": "Linkedin Profile",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    },
     "Form": {}
   }
 }

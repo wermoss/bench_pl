@@ -3,23 +3,23 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"content": {
+			"section_title": {
+				"__TYPE__": "FieldContent",
+				"value": "spring",
+				"type": "Text"
+			},
+			"section_subtitle": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Irure in cillum do amet Lorem esse."
+							"text": "Dolor mollit deserunt eiusmod exercitation cupidatat."
 						}
 					}
 				]
 			}
 		},
-		"items": [
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": []
-			}
-		]
+		"items": []
 	}
 ]
