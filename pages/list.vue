@@ -13,6 +13,11 @@ useHead({
 
 <template>
   <div>
+    <ArticleList />
+  </div>
+</template>
+<!-- <template>
+  <div>
     <div v-for="article in articles" :key="article.id">
       <SliceZone
         wrapper="main"
@@ -21,4 +26,4 @@ useHead({
       />
     </div>
   </div>
-</template>
+</template> -->

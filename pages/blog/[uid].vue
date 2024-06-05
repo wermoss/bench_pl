@@ -28,6 +28,7 @@ watchEffect(() => {
 </script>
 
 <template>
+  to jest tres artykulu
   <SliceZone
     wrapper="main"
     :slices="page?.data.slices ?? []"
