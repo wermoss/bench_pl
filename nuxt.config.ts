@@ -25,7 +25,11 @@ export default defineNuxtConfig({
   css: ["~/assets/css/tailwind.css"],
   tailwindcss: {
     config: {
-      content: ["./app/**/*.{js,ts,vue}", "./slices/**/*.{js,ts,vue}"],
+      content: [
+        "./app/**/*.{js,ts,vue}",
+        "./slices/**/*.{js,ts,vue}",
+        "./blog/**/*.{js,ts,vue}",
+      ],
       theme: {
         fontFamily: {
           sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',

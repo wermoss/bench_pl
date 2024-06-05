@@ -28,10 +28,18 @@ watchEffect(() => {
 </script>
 
 <template>
-  to jest tres artykulu
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
+  <section
+    class="container mx-auto max-w-6xl grid lg:grid-cols-5 px-8 pb-20 gap-20"
+  >
+    <div class="lg:col-span-3 space-y-4">
+      <SliceZone
+        wrapper="main"
+        :slices="page?.data.slices ?? []"
+        :components="components"
+      />
+    </div>
+    <div class="lg:col-span-2 sticky top-0 self-start hidden lg:block">
+      <div><Form /></div>
+    </div>
+  </section>
 </template>
