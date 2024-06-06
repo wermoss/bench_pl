@@ -39,6 +39,12 @@
               <a :href="`mailto:${item.email}`">{{ item.email }}</a>
             </div>
           </div>
+          <div class="pt-20">
+            <p class="text-3xl pb-4">{{ companyName }}</p>
+            <p>{{ address }}</p>
+            <p>NIP: {{ nip }}</p>
+            <p>REGON: {{ regon }}</p>
+          </div>
         </div>
         <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
       </div>

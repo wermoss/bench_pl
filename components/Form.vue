@@ -6,7 +6,7 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua.
   </div>
-  <div class="bg-gray-100 p-8">
+  <div class="bg-gray-100 p-8 rounded">
     <form id="contactForm" @submit.prevent="sendEmail" class="tracking-wide">
       <label for="name" class="text-sm">Imię i nazwisko</label><br />
       <input
