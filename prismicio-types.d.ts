@@ -102,11 +102,7 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice =
-  | MainTextSlice
-  | TitleSlice
-  | PhotoSlice
-  | RichTextSlice;
+type PageDocumentDataSlicesSlice = MainTextSlice | PhotoSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -559,6 +555,28 @@ export interface TemporaryDocumentDataOwnersItem {
  * Content for Temporary documents
  */
 interface TemporaryDocumentData {
+  /**
+   * Section Title field in *Temporary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.section_title
+   * - **Tab**: Services
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  section_title: prismic.KeyTextField;
+
+  /**
+   * Section Subtitle field in *Temporary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.section_subtitle
+   * - **Tab**: Services
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_subtitle: prismic.RichTextField;
+
   /**
    * Service field in *Temporary*
    *

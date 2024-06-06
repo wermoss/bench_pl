@@ -4,33 +4,35 @@ import { components } from "~/slices";
 const layout = "custom";
 const prismic = usePrismic();
 const route = useRoute();
-const { data: page } = useAsyncData(route.params.uid as string, async () => {
-  const response = await prismic.client.getByUID(
-    "page",
-    route.params.uid as string
-  );
 
-  return response.data; // Zwróć dane bezpośrednio
+const results = await Promise.all([
+  prismic.client.getByUID("page", route.params.uid),
+  prismic.client.getSingle("settings"),
+]);
+
+const page = ref(results[0].data);
+const settings = ref(results[1].data);
+
+// const { data: page } = useAsyncData(route.params.uid as string, async () => {
+//   const response = await prismic.client.getByUID(
+//     "page",
+//     route.params.uid as string
+//   );
+
+//   return response.data; // Zwróć dane bezpośrednio
+// });
+
+// // Pobierz dane settings z Prismic
+// const { data: settings } = useAsyncData("settings", async () => {
+//   const response = await prismic.client.getSingle("settings");
+//   return response.data; // Zwróć dane bezpośrednio
+// });
+
+useSeoMeta({
+  title: page.value?.meta_title ?? settings.value?.site_title,
+  description: page.value?.meta_description ?? settings.value?.meta_description,
 });
 
-// Pobierz dane settings z Prismic
-const { data: settings } = useAsyncData("settings", async () => {
-  const response = await prismic.client.getSingle("settings");
-  return response.data; // Zwróć dane bezpośrednio
-});
-
-watchEffect(() => {
-  if (page.value?.data) {
-    useSeoMeta({
-      title: page.value?.data.meta_title ?? settings.value?.data.site_title,
-      description:
-        page.value?.data.meta_description ??
-        settings.value?.data.meta_description,
-      ogImage:
-        page.value?.data.meta_image?.url ?? settings.value?.data.og_image.url,
-    });
-  }
-});
 definePageMeta({
   layout: "custom",
 });

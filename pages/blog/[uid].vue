@@ -4,26 +4,35 @@ import { watchEffect } from "vue";
 
 const prismic = usePrismic();
 const route = useRoute();
-const { data: page } = useAsyncData(route.params.uid as string, () =>
-  prismic.client.getByUID("article", route.params.uid as string)
-);
 
-// Pobierz dane settings z Prismic
-const { data: settings } = useAsyncData("settings", () =>
-  prismic.client.getSingle("settings")
-);
+const results = await Promise.all([
+  prismic.client.getByUID("article", route.params.uid),
+  prismic.client.getSingle("settings"),
+]);
 
-watchEffect(() => {
-  if (page.value?.data) {
-    useSeoMeta({
-      title: page.value?.data.meta_title ?? settings.value?.data.site_title,
-      description:
-        page.value?.data.meta_description ??
-        settings.value?.data.meta_description,
-      ogImage:
-        page.value?.data.meta_image?.url ?? settings.value?.data.og_image.url,
-    });
-  }
+const page = ref(results[0].data);
+const settings = ref(results[1].data);
+
+// const { data: page } = await useAsyncData(
+//   route.params.uid as string,
+//   async () => {
+//     const r = await prismic.client.getByUID(
+//       "article",
+//       route.params.uid as string
+//     );
+//     return r.data;
+//   }
+// );
+
+// // Pobierz dane settings z Prismic
+// const { data: settings } = await useAsyncData("settings", async () => {
+//   const r = await prismic.client.getSingle("settings");
+//   return r.data;
+// });
+
+useSeoMeta({
+  title: page.value?.meta_title ?? settings.value?.site_title,
+  description: page.value?.meta_description ?? settings.value?.meta_description,
 });
 
 definePageMeta({
@@ -38,7 +47,7 @@ definePageMeta({
     <div class="lg:col-span-3 space-y-4">
       <SliceZone
         wrapper="main"
-        :slices="page?.data.slices ?? []"
+        :slices="page?.slices ?? []"
         :components="components"
       />
     </div>

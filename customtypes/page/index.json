@@ -37,9 +37,6 @@
             "main_text": {
               "type": "SharedSlice"
             },
-            "title": {
-              "type": "SharedSlice"
-            },
             "photo": {
               "type": "SharedSlice"
             },

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const settings = useSettings();
 
+console.log("zzzzzz");
+
 useSeoMeta({
   title: settings.value?.data.site_title,
   description: settings.value?.data.meta_description,

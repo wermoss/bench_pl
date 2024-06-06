@@ -3,21 +3,23 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "race",
-				"type": "Text"
-			},
 			"subtitle": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Consectetur exercitation et cupidatat quis. Minim ad consequat eiusmod ipsum laborum eiusmod ut pariatur sint officia exercitation. Cupidatat aute consequat quis quis non labore minim laboris mollit."
-						}
+							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Main Title"
 			}
 		},
 		"items": []

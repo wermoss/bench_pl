@@ -2,12 +2,16 @@
 import { onMounted, computed } from "vue";
 
 const prismic = usePrismic();
-const { data: services } = useAsyncData("temporar", () =>
+const { data: services } = useAsyncData("temporary", () =>
   prismic.client.getSingle("temporary")
 );
 
 const servicesData = computed(
   () => (services.value?.data.service as any[]) ?? []
+);
+const sectionTitle = computed(() => services.value?.data.section_title ?? "");
+const sectionSubtitle = computed(
+  () => services.value?.data.section_subtitle ?? ""
 );
 
 onMounted(() => {
@@ -16,6 +20,11 @@ onMounted(() => {
 </script>
 <template>
   <section class="bg-gray-100 py-20">
+    <div class="max-w-3xl mx-auto text-center pb-20">
+      <h3 class="text-5xl">{{ sectionTitle }}</h3>
+      <br />
+      <PrismicRichText :field="sectionSubtitle" />
+    </div>
     <div class="mx-auto max-w-6xl px-8 flex flex-wrap">
       <div
         v-for="(item, index) in servicesData"
