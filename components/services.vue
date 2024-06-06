@@ -37,7 +37,11 @@ onMounted(() => {
       >
         <h3 class="text-[20px] font-normal">{{ item.name }}</h3>
         <p class="text-[14px] leading-[25px] line-clamp-4 overflow-hidden">
-          {{ item.description && item.description[0].text }}
+          {{
+            item.description && item.description[0]
+              ? item.description[0].text
+              : ""
+          }}
         </p>
         <div class="flex items-center">
           <a :href="item.link.url">Czytaj więcej</a>{{ item.color }}
