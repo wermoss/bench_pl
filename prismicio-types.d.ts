@@ -190,6 +190,43 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 /**
+ * Item in *Settings → Links*
+ */
+export interface SettingsDocumentDataLinksItem {
+  /**
+   * Label field in *Settings → Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Settings → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Sublink field in *Settings → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[].sublink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  sublink: prismic.LinkField;
+}
+
+type SettingsDocumentDataSlices1Slice = SublinksSlice;
+
+/**
  * Item in *Settings → Contacts*
  */
 export interface SettingsDocumentDataContactsItem {
@@ -290,6 +327,26 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   og_image: prismic.ImageField<never> /**
+   * Links field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[]
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  links: prismic.GroupField<Simplify<SettingsDocumentDataLinksItem>>;
+
+  /**
+   * Slice Zone field in *Settings*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.slices1[]
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices1: prismic.SliceZone<SettingsDocumentDataSlices1Slice> /**
    * Section Title field in *Settings*
    *
    * - **Field Type**: Text
@@ -551,6 +608,36 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Default variation for Sublinks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SublinksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Sublinks*
+ */
+type SublinksSliceVariation = SublinksSliceDefault;
+
+/**
+ * Sublinks Shared Slice
+ *
+ * - **API ID**: `sublinks`
+ * - **Description**: Sublinks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SublinksSlice = prismic.SharedSlice<
+  "sublinks",
+  SublinksSliceVariation
+>;
+
+/**
  * Primary content in *Title → Primary*
  */
 export interface TitleSliceDefaultPrimary {
@@ -620,6 +707,8 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataLinksItem,
+      SettingsDocumentDataSlices1Slice,
       SettingsDocumentDataContactsItem,
       AllDocumentTypes,
       MySpecialSliceSlice,
@@ -634,6 +723,9 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      SublinksSlice,
+      SublinksSliceVariation,
+      SublinksSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceVariation,

@@ -12,7 +12,7 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <div class="py-20">
     <ArticleList />
   </div>
 </template>

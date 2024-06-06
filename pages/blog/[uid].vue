@@ -29,7 +29,7 @@ watchEffect(() => {
 
 <template>
   <section
-    class="container mx-auto max-w-6xl grid lg:grid-cols-5 px-8 pb-20 gap-20"
+    class="container mx-auto max-w-6xl grid lg:grid-cols-5 px-8 py-20 pb-20 gap-20"
   >
     <div class="lg:col-span-3 space-y-4">
       <SliceZone
