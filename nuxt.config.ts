@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss", "nuxt-swiper"],
+  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss", "nuxt-swiper", "@nuxt/image"],
 
   css: ["~/assets/css/tailwind.css"],
   tailwindcss: {

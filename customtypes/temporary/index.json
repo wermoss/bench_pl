@@ -73,6 +73,31 @@
           }
         }
       }
+    },
+    "Owners": {
+      "owners": {
+        "type": "Group",
+        "config": {
+          "label": "Owners",
+          "repeat": true,
+          "fields": {
+            "public_id": {
+              "type": "Text",
+              "config": {
+                "label": "Public ID",
+                "placeholder": ""
+              }
+            },
+            "alt_text": {
+              "type": "Text",
+              "config": {
+                "label": "Alt Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

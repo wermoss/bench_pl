@@ -25,6 +25,10 @@ watchEffect(() => {
     });
   }
 });
+
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <template>

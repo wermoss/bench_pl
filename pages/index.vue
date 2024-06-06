@@ -14,13 +14,8 @@ useHead({
 </script>
 
 <template>
-  <div class="h-[600px] flex justify-center items-center">
-    <span
-      >Miejsce na elementy strony głównej - przeniesienie 1:1 z wersji
-      beta</span
-    >
-  </div>
   <section>
+    <Slider />
     <Services />
     <Clients />
   </section>

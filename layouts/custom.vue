@@ -10,7 +10,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <HeaderA />
+    <HeaderB />
     <slot />
     <Footer />
   </div>

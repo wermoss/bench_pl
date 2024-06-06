@@ -24,7 +24,7 @@
               <a
                 :href="`https://www.linkedin.com/in/${item.linkedin_profile}`"
                 target="_blank"
-                class="bg-[#e9ac0e] absolute top-[-10px] left-[-10px] rounded w-[30px] h-[30px] z-50 flex items-center justify-center"
+                class="bg-[#e9ac0e] absolute top-[-10px] left-[-10px] rounded w-[30px] h-[30px] z-40 flex items-center justify-center"
               >
                 <img src="/img/linkedin.svg" class="w-6" alt="LinkedIn" />
               </a>

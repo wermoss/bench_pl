@@ -9,6 +9,10 @@ const { data: articles } = await useAsyncData("articles", () =>
 useHead({
   title: "List of Articles",
 });
+
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <template>

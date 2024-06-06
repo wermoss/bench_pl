@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { components } from "~/slices";
 
+const layout = "custom";
 const prismic = usePrismic();
 const route = useRoute();
 const { data: page } = useAsyncData(route.params.uid as string, async () => {
@@ -30,7 +31,9 @@ watchEffect(() => {
     });
   }
 });
-
+definePageMeta({
+  layout: "custom",
+});
 // Podziel slices na "main_text" i pozostałe
 const mainTextSlices =
   page.value?.slices?.filter((slice) => slice.slice_type === "main_text") ?? [];

@@ -531,6 +531,31 @@ export interface TemporaryDocumentDataClientsItem {
 }
 
 /**
+ * Item in *Temporary → Owners*
+ */
+export interface TemporaryDocumentDataOwnersItem {
+  /**
+   * Public ID field in *Temporary → Owners*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.owners[].public_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  public_id: prismic.KeyTextField;
+
+  /**
+   * Alt Text field in *Temporary → Owners*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.owners[].alt_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  alt_text: prismic.KeyTextField;
+}
+
+/**
  * Content for Temporary documents
  */
 interface TemporaryDocumentData {
@@ -552,7 +577,16 @@ interface TemporaryDocumentData {
    * - **Tab**: Cients
    * - **Documentation**: https://prismic.io/docs/field#group
    */;
-  clients: prismic.GroupField<Simplify<TemporaryDocumentDataClientsItem>>;
+  clients: prismic.GroupField<Simplify<TemporaryDocumentDataClientsItem>> /**
+   * Owners field in *Temporary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.owners[]
+   * - **Tab**: Owners
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  owners: prismic.GroupField<Simplify<TemporaryDocumentDataOwnersItem>>;
 }
 
 /**
@@ -836,6 +870,7 @@ declare module "@prismicio/client" {
       TemporaryDocumentData,
       TemporaryDocumentDataServiceItem,
       TemporaryDocumentDataClientsItem,
+      TemporaryDocumentDataOwnersItem,
       AllDocumentTypes,
       MainTextSlice,
       MainTextSliceDefaultPrimary,
