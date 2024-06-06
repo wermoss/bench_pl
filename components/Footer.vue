@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-span-2 lg:col-span-1"><Form /></div>
+        <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
       </div>
     </div>
   </section>
