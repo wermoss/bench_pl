@@ -38,14 +38,14 @@ articles.forEach((article) => {
       </div>
       <div class="w-full lg:w-1/2">
         <h2 class="text-3xl pb-4">
-          {{
+          <nuxt-link :to="`/blog/${article.uid}`">{{
             article.data.title.length > 50
               ? (article.data.title || "").substring(0, 70) + " ..."
               : article.data.title
-          }}
+          }}</nuxt-link>
         </h2>
         <p class="pb-4 flex flex-row text-sm">
-          <img src="/img/icon-calendar.svg" alt="Icon" class="w-3 mr-3" />
+          <img src="/img/icon-calendar.svg" alt="Icon" class="w-[15px] mr-3" />
           {{ new Date(article.first_publication_date).toLocaleDateString() }}
         </p>
         <p class="pb-4">

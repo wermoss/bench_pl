@@ -14,17 +14,13 @@ useHead({
 </script>
 
 <template>
-  <SliceZone
-    wrapper="main"
-    :slices="
-      page?.data.slices.filter(
-        (slice) => slice.slice_type === 'my_special_slice'
-      ) ?? []
-    "
-    :components="components"
-  />
-
-  <div class="bg-gray-100">
+  <div class="h-[600px] flex justify-center items-center">
+    <span
+      >Miejsce na elementy strony głównej - przeniesienie 1:1 z wersji
+      beta</span
+    >
+  </div>
+  <!-- <div class="bg-gray-100">
     <SliceZone
       wrapper="main"
       :slices="
@@ -33,6 +29,6 @@ useHead({
       "
       :components="components"
     />
-  </div>
-  <ArticleList />
+  </div> -->
+  <!-- <ArticleList /> -->
 </template>

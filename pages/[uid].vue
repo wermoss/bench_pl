@@ -33,7 +33,7 @@ const otherSlices =
 </script>
 
 <template>
-  <section class="container mx-auto max-w-6xl px-8 pt-20">
+  <section class="container mx-auto max-w-6xl px-8">
     <SliceZone
       wrapper="main"
       :slices="mainTextSlices"

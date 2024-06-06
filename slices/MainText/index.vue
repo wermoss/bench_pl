@@ -18,8 +18,16 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    {{ slice.primary.title }}
-    <br />
-    <PrismicRichText :field="slice.primary.subtitle" />
+    <div
+      class="flex flex-col justify-center items-center container mx-auto max-w-2xl pt-20"
+    >
+      <span class="text-3xl font-bold text-center">{{
+        slice.primary.title
+      }}</span>
+      <br />
+      <span class="text-center"
+        ><PrismicRichText :field="slice.primary.subtitle"
+      /></span>
+    </div>
   </section>
 </template>
