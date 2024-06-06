@@ -18,11 +18,17 @@ const { data: settings } = useAsyncData("settings", async () => {
   return response.data; // Zwróć dane bezpośrednio
 });
 
-useSeoMeta({
-  title: page.value?.title[0]?.text ?? settings.value?.site_title,
-  description:
-    page.value?.subtitle[0]?.text ?? settings.value?.meta_description,
-  ogImage: page.value?.meta_image?.url ?? settings.value?.og_image.url,
+watchEffect(() => {
+  if (page.value?.data) {
+    useSeoMeta({
+      title: page.value?.data.meta_title ?? settings.value?.data.site_title,
+      description:
+        page.value?.data.meta_description ??
+        settings.value?.data.meta_description,
+      ogImage:
+        page.value?.data.meta_image?.url ?? settings.value?.data.og_image.url,
+    });
+  }
 });
 
 // Podziel slices na "main_text" i pozostałe
