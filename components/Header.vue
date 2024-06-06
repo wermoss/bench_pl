@@ -4,10 +4,21 @@ const settings = useSettings();
 
 <template>
   <section class="bg-black">
-    <div class="container mx-auto max-w-6xl px-8 py-4 text-white">
+    <div
+      class="container mx-auto max-w-6xl px-8 py-6 text-white flex items-center justify-between"
+    >
+      <div>
+        <nuxt-link to="/">
+          <img
+            src="/img/benchmarket.svg"
+            alt="Benchmarket.pl"
+            class="w-[120px]"
+          />
+        </nuxt-link>
+      </div>
       <div>
         <nav>
-          <ul>
+          <ul class="flex gap-4 uppercase text-xs tracking-[.2em]">
             <li v-for="(link, index) in settings.data.links" :key="index">
               <a :href="link.link.url">{{ link.label }}</a>
             </li>
