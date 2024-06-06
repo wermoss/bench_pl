@@ -40,6 +40,39 @@
           }
         }
       }
+    },
+    "Cients": {
+      "clients": {
+        "type": "Group",
+        "config": {
+          "label": "Clients",
+          "repeat": true,
+          "fields": {
+            "public_id": {
+              "type": "Text",
+              "config": {
+                "label": "Public ID",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "alt_text": {
+              "type": "Text",
+              "config": {
+                "label": "Alt Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

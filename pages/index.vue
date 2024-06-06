@@ -22,6 +22,7 @@ useHead({
   </div>
   <section>
     <Services />
+    <Clients />
   </section>
   <!-- <div class="bg-gray-100">
     <SliceZone

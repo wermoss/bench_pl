@@ -24,5 +24,8 @@
     "eslint": "^8.57.0",
     "nuxt": "^3.11.1",
     "slice-machine-ui": "^2.1.0"
+  },
+  "dependencies": {
+    "nuxt-swiper": "^1.2.2"
   }
 }

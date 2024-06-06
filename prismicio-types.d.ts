@@ -496,6 +496,41 @@ export interface TemporaryDocumentDataServiceItem {
 }
 
 /**
+ * Item in *Temporary → Clients*
+ */
+export interface TemporaryDocumentDataClientsItem {
+  /**
+   * Public ID field in *Temporary → Clients*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.clients[].public_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  public_id: prismic.KeyTextField;
+
+  /**
+   * Link field in *Temporary → Clients*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.clients[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Alt Text field in *Temporary → Clients*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.clients[].alt_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  alt_text: prismic.KeyTextField;
+}
+
+/**
  * Content for Temporary documents
  */
 interface TemporaryDocumentData {
@@ -508,7 +543,16 @@ interface TemporaryDocumentData {
    * - **Tab**: Services
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  service: prismic.GroupField<Simplify<TemporaryDocumentDataServiceItem>>;
+  service: prismic.GroupField<Simplify<TemporaryDocumentDataServiceItem>> /**
+   * Clients field in *Temporary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.clients[]
+   * - **Tab**: Cients
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  clients: prismic.GroupField<Simplify<TemporaryDocumentDataClientsItem>>;
 }
 
 /**
@@ -791,6 +835,7 @@ declare module "@prismicio/client" {
       TemporaryDocument,
       TemporaryDocumentData,
       TemporaryDocumentDataServiceItem,
+      TemporaryDocumentDataClientsItem,
       AllDocumentTypes,
       MainTextSlice,
       MainTextSliceDefaultPrimary,
