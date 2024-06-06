@@ -8,6 +8,7 @@ const { data: page } = useAsyncData(route.params.uid as string, async () => {
     "page",
     route.params.uid as string
   );
+
   return response.data; // Zwróć dane bezpośrednio
 });
 
@@ -23,15 +24,29 @@ useSeoMeta({
     page.value?.subtitle[0]?.text ?? settings.value?.meta_description,
   ogImage: page.value?.meta_image?.url ?? settings.value?.og_image.url,
 });
+
+// Podziel slices na "main_text" i pozostałe
+const mainTextSlices =
+  page.value?.slices?.filter((slice) => slice.slice_type === "main_text") ?? [];
+const otherSlices =
+  page.value?.slices?.filter((slice) => slice.slice_type !== "main_text") ?? [];
 </script>
+
 <template>
+  <section class="container mx-auto max-w-6xl px-8 pt-20">
+    <SliceZone
+      wrapper="main"
+      :slices="mainTextSlices"
+      :components="components"
+    />
+  </section>
   <section
     class="container mx-auto max-w-6xl grid lg:grid-cols-5 px-8 py-20 gap-20"
   >
     <div class="lg:col-span-3 space-y-4">
       <SliceZone
         wrapper="main"
-        :slices="page?.slices ?? []"
+        :slices="otherSlices"
         :components="components"
       />
     </div>

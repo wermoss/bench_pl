@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "race",
+				"type": "Text"
+			},
+			"subtitle": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit anim ullamco anim id sit aliquip voluptate velit. Non laborum laboris ea eiusmod dolore ad laboris fugiat Lorem laborum id officia. Excepteur quis incididunt sunt fugiat."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

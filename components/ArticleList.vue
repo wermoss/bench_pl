@@ -23,7 +23,7 @@ articles.forEach((article) => {
     <div
       v-for="article in articles"
       :key="article.id"
-      class="flex flex-col lg:flex-row gap-16 mb-10"
+      class="flex flex-col lg:flex-row gap-16 mb-10 items-center"
     >
       <div class="w-full lg:w-1/2">
         <nuxt-link :to="`/blog/${article.uid}`">
@@ -37,25 +37,25 @@ articles.forEach((article) => {
         </nuxt-link>
       </div>
       <div class="w-full lg:w-1/2">
-        <h2 class="text-3xl pb-6">
+        <h2 class="text-3xl pb-4">
           {{
             article.data.title.length > 50
               ? (article.data.title || "").substring(0, 70) + " ..."
               : article.data.title
           }}
         </h2>
-        <p class="pb-6 flex flex-row text-gray-400">
-          <img src="/img/icon-calendar.svg" alt="Icon" class="w-4 mr-3" />
+        <p class="pb-4 flex flex-row text-sm">
+          <img src="/img/icon-calendar.svg" alt="Icon" class="w-3 mr-3" />
           {{ new Date(article.first_publication_date).toLocaleDateString() }}
         </p>
-        <p>
+        <p class="pb-4">
           {{
             (
               article.data.lead.map((item) => item.text).join(" ") || ""
             ).substring(0, 250) + " ..."
           }}
         </p>
-        <nuxt-link :to="`/blog/${article.uid}`">Read More</nuxt-link>
+        <nuxt-link :to="`/blog/${article.uid}`">Czytaj wiecej</nuxt-link>
       </div>
     </div>
   </div>

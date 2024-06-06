@@ -36,7 +36,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "my_special_slice": {
+            "main_text": {
               "type": "SharedSlice"
             },
             "title": {

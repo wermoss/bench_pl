@@ -103,7 +103,7 @@ export type ArticleDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
-  | MySpecialSliceSlice
+  | MainTextSlice
   | TitleSlice
   | PhotoSlice
   | RichTextSlice;
@@ -466,48 +466,58 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
- * Primary content in *MySpecialSlice → Primary*
+ * Primary content in *MainText → Primary*
  */
-export interface MySpecialSliceSliceDefaultPrimary {
+export interface MainTextSliceDefaultPrimary {
   /**
-   * test field in *MySpecialSlice → Primary*
+   * Title field in *MainText → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: main_text.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *MainText → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: my_special_slice.primary.test
+   * - **API ID Path**: main_text.primary.subtitle
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  test: prismic.RichTextField;
+  subtitle: prismic.RichTextField;
 }
 
 /**
- * Default variation for MySpecialSlice Slice
+ * Default variation for MainText Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type MySpecialSliceSliceDefault = prismic.SharedSliceVariation<
+export type MainTextSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<MySpecialSliceSliceDefaultPrimary>,
+  Simplify<MainTextSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *MySpecialSlice*
+ * Slice variation for *MainText*
  */
-type MySpecialSliceSliceVariation = MySpecialSliceSliceDefault;
+type MainTextSliceVariation = MainTextSliceDefault;
 
 /**
- * MySpecialSlice Shared Slice
+ * MainText Shared Slice
  *
- * - **API ID**: `my_special_slice`
- * - **Description**: MySpecialSlice
+ * - **API ID**: `main_text`
+ * - **Description**: MainText
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type MySpecialSliceSlice = prismic.SharedSlice<
-  "my_special_slice",
-  MySpecialSliceSliceVariation
+export type MainTextSlice = prismic.SharedSlice<
+  "main_text",
+  MainTextSliceVariation
 >;
 
 /**
@@ -711,10 +721,10 @@ declare module "@prismicio/client" {
       SettingsDocumentDataSlices1Slice,
       SettingsDocumentDataContactsItem,
       AllDocumentTypes,
-      MySpecialSliceSlice,
-      MySpecialSliceSliceDefaultPrimary,
-      MySpecialSliceSliceVariation,
-      MySpecialSliceSliceDefault,
+      MainTextSlice,
+      MainTextSliceDefaultPrimary,
+      MainTextSliceVariation,
+      MainTextSliceDefault,
       PhotoSlice,
       PhotoSliceDefaultPrimary,
       PhotoSliceVariation,
