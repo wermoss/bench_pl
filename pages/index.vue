@@ -20,6 +20,9 @@ useHead({
       beta</span
     >
   </div>
+  <section>
+    <Services />
+  </section>
   <!-- <div class="bg-gray-100">
     <SliceZone
       wrapper="main"

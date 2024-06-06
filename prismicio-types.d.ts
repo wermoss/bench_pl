@@ -460,10 +460,78 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Temporary → Service*
+ */
+export interface TemporaryDocumentDataServiceItem {
+  /**
+   * Name field in *Temporary → Service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.service[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Temporary → Service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.service[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Link field in *Temporary → Service*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.service[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for Temporary documents
+ */
+interface TemporaryDocumentData {
+  /**
+   * Service field in *Temporary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.service[]
+   * - **Tab**: Services
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  service: prismic.GroupField<Simplify<TemporaryDocumentDataServiceItem>>;
+}
+
+/**
+ * Temporary document from Prismic
+ *
+ * - **API ID**: `temporary`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TemporaryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TemporaryDocumentData>,
+    "temporary",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | ArticleDocument
   | PageDocument
-  | SettingsDocument;
+  | SettingsDocument
+  | TemporaryDocument;
 
 /**
  * Primary content in *MainText → Primary*
@@ -720,6 +788,9 @@ declare module "@prismicio/client" {
       SettingsDocumentDataLinksItem,
       SettingsDocumentDataSlices1Slice,
       SettingsDocumentDataContactsItem,
+      TemporaryDocument,
+      TemporaryDocumentData,
+      TemporaryDocumentDataServiceItem,
       AllDocumentTypes,
       MainTextSlice,
       MainTextSliceDefaultPrimary,
