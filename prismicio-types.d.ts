@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticleDocumentDataSlicesSlice = PhotoSlice | RichTextSlice;
+type ArticleDocumentDataSlicesSlice =
+  | ArticleTitleSlice
+  | PhotoSlice
+  | RichTextSlice;
 
 /**
  * Content for Article documents
@@ -630,6 +633,51 @@ export type AllDocumentTypes =
   | TemporaryDocument;
 
 /**
+ * Primary content in *ArticleTitle → Primary*
+ */
+export interface ArticleTitleSliceDefaultPrimary {
+  /**
+   * Title field in *ArticleTitle → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article_title.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ArticleTitle Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleTitleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticleTitleSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ArticleTitle*
+ */
+type ArticleTitleSliceVariation = ArticleTitleSliceDefault;
+
+/**
+ * ArticleTitle Shared Slice
+ *
+ * - **API ID**: `article_title`
+ * - **Description**: ArticleTitle
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleTitleSlice = prismic.SharedSlice<
+  "article_title",
+  ArticleTitleSliceVariation
+>;
+
+/**
  * Primary content in *MainText → Primary*
  */
 export interface MainTextSliceDefaultPrimary {
@@ -890,6 +938,10 @@ declare module "@prismicio/client" {
       TemporaryDocumentDataClientsItem,
       TemporaryDocumentDataOwnersItem,
       AllDocumentTypes,
+      ArticleTitleSlice,
+      ArticleTitleSliceDefaultPrimary,
+      ArticleTitleSliceVariation,
+      ArticleTitleSliceDefault,
       MainTextSlice,
       MainTextSliceDefaultPrimary,
       MainTextSliceVariation,

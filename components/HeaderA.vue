@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const settings = useSettings();
-
-console.log("zzzzzz");
 </script>
 
 <template>

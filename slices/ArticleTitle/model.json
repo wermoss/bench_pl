@@ -1,0 +1,28 @@
+{
+  "id": "article_title",
+  "type": "SharedSlice",
+  "name": "ArticleTitle",
+  "description": "ArticleTitle",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading1"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

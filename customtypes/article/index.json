@@ -41,6 +41,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "article_title": {
+              "type": "SharedSlice"
+            },
             "photo": {
               "type": "SharedSlice"
             },
