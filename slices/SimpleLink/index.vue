@@ -4,7 +4,7 @@ import { type Content } from "@prismicio/client";
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
-  getSliceComponentProps<Content.SublinksSlice>([
+  getSliceComponentProps<Content.SimpleLinkSlice>([
     "slice",
     "index",
     "slices",
@@ -18,6 +18,7 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    Placeholder component for sublinks (variation: {{ slice.variation }}) Slices
+    Placeholder component for simple_link (variation: {{ slice.variation }})
+    Slices
   </section>
 </template>

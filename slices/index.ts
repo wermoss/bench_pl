@@ -6,8 +6,9 @@ import { defineSliceZoneComponents } from "@prismicio/vue";
 export const components = defineSliceZoneComponents({
   article_title: defineAsyncComponent(() => import("./ArticleTitle/index.vue")),
   main_text: defineAsyncComponent(() => import("./MainText/index.vue")),
+  multi_link: defineAsyncComponent(() => import("./MultiLink/index.vue")),
   photo: defineAsyncComponent(() => import("./Photo/index.vue")),
   rich_text: defineAsyncComponent(() => import("./RichText/index.vue")),
-  sublinks: defineAsyncComponent(() => import("./Sublinks/index.vue")),
+  simple_link: defineAsyncComponent(() => import("./SimpleLink/index.vue")),
   title: defineAsyncComponent(() => import("./Title/index.vue")),
 });

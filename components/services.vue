@@ -14,9 +14,9 @@ const sectionSubtitle = computed(
   () => services.value?.data.section_subtitle ?? ""
 );
 
-onMounted(() => {
-  console.log(servicesData.value);
-});
+// onMounted(() => {
+//   console.log(servicesData.value);
+// });
 </script>
 <template>
   <section class="bg-gray-100 py-20">

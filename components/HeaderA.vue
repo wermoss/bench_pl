@@ -17,13 +17,7 @@ const settings = useSettings();
         </nuxt-link>
       </div>
       <div>
-        <nav>
-          <ul class="flex gap-4 uppercase text-xs tracking-[.2em]">
-            <li v-for="(link, index) in settings.data.links" :key="index">
-              <a :href="link.link.url">{{ link.label }}</a>
-            </li>
-          </ul>
-        </nav>
+        <NewMenu />
       </div>
     </div>
   </section>

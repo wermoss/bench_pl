@@ -33,44 +33,15 @@
       }
     },
     "Header": {
-      "links": {
-        "type": "Group",
-        "config": {
-          "label": "Links",
-          "repeat": true,
-          "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
-            },
-            "sublink": {
-              "type": "Link",
-              "config": {
-                "label": "Sublink",
-                "placeholder": "",
-                "select": null
-              }
-            }
-          }
-        }
-      },
       "slices1": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "sublinks": {
+            "multi_link": {
+              "type": "SharedSlice"
+            },
+            "simple_link": {
               "type": "SharedSlice"
             }
           }

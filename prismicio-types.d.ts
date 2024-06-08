@@ -188,42 +188,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-/**
- * Item in *Settings → Links*
- */
-export interface SettingsDocumentDataLinksItem {
-  /**
-   * Label field in *Settings → Links*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.links[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-
-  /**
-   * Link field in *Settings → Links*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.links[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-
-  /**
-   * Sublink field in *Settings → Links*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.links[].sublink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  sublink: prismic.LinkField;
-}
-
-type SettingsDocumentDataSlices1Slice = SublinksSlice;
+type SettingsDocumentDataSlices1Slice = MultiLinkSlice | SimpleLinkSlice;
 
 /**
  * Item in *Settings → Contacts*
@@ -326,17 +291,6 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   og_image: prismic.ImageField<never> /**
-   * Links field in *Settings*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.links[]
-   * - **Tab**: Header
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */;
-  links: prismic.GroupField<Simplify<SettingsDocumentDataLinksItem>>;
-
-  /**
    * Slice Zone field in *Settings*
    *
    * - **Field Type**: Slice Zone
@@ -344,7 +298,7 @@ interface SettingsDocumentData {
    * - **API ID Path**: settings.slices1[]
    * - **Tab**: Header
    * - **Documentation**: https://prismic.io/docs/field#slices
-   */
+   */;
   slices1: prismic.SliceZone<SettingsDocumentDataSlices1Slice> /**
    * Section Title field in *Settings*
    *
@@ -733,6 +687,61 @@ export type MainTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *MultiLink → Primary*
+ */
+export interface MultiLinkSliceDefaultPrimary {
+  /**
+   * Active Label field in *MultiLink → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: multi_link.primary.active_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  active_label: prismic.KeyTextField;
+
+  /**
+   * Links field in *MultiLink → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: multi_link.primary.links[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<Simplify<MultiLinkDocumentDataLinksItem>>;
+}
+
+/**
+ * Default variation for MultiLink Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MultiLinkSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MultiLinkSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MultiLink*
+ */
+type MultiLinkSliceVariation = MultiLinkSliceDefault;
+
+/**
+ * MultiLink Shared Slice
+ *
+ * - **API ID**: `multi_link`
+ * - **Description**: MultiLink
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MultiLinkSlice = prismic.SharedSlice<
+  "multi_link",
+  MultiLinkSliceVariation
+>;
+
+/**
  * Primary content in *Photo → Primary*
  */
 export interface PhotoSliceDefaultPrimary {
@@ -830,33 +839,58 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
- * Default variation for Sublinks Slice
+ * Primary content in *SimpleLink → Primary*
+ */
+export interface SimpleLinkSliceDefaultPrimary {
+  /**
+   * Label field in *SimpleLink → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_link.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *SimpleLink → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_link.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Default variation for SimpleLink Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type SublinksSliceDefault = prismic.SharedSliceVariation<
+export type SimpleLinkSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<SimpleLinkSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Sublinks*
+ * Slice variation for *SimpleLink*
  */
-type SublinksSliceVariation = SublinksSliceDefault;
+type SimpleLinkSliceVariation = SimpleLinkSliceDefault;
 
 /**
- * Sublinks Shared Slice
+ * SimpleLink Shared Slice
  *
- * - **API ID**: `sublinks`
- * - **Description**: Sublinks
+ * - **API ID**: `simple_link`
+ * - **Description**: SimpleLink
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type SublinksSlice = prismic.SharedSlice<
-  "sublinks",
-  SublinksSliceVariation
+export type SimpleLinkSlice = prismic.SharedSlice<
+  "simple_link",
+  SimpleLinkSliceVariation
 >;
 
 /**
@@ -929,7 +963,6 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
-      SettingsDocumentDataLinksItem,
       SettingsDocumentDataSlices1Slice,
       SettingsDocumentDataContactsItem,
       TemporaryDocument,
@@ -946,6 +979,11 @@ declare module "@prismicio/client" {
       MainTextSliceDefaultPrimary,
       MainTextSliceVariation,
       MainTextSliceDefault,
+      MultiLinkSlice,
+      MultiLinkDocumentDataLinksItem,
+      MultiLinkSliceDefaultPrimary,
+      MultiLinkSliceVariation,
+      MultiLinkSliceDefault,
       PhotoSlice,
       PhotoSliceDefaultPrimary,
       PhotoSliceVariation,
@@ -954,9 +992,10 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
-      SublinksSlice,
-      SublinksSliceVariation,
-      SublinksSliceDefault,
+      SimpleLinkSlice,
+      SimpleLinkSliceDefaultPrimary,
+      SimpleLinkSliceVariation,
+      SimpleLinkSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceVariation,
