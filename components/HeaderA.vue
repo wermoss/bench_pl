@@ -46,7 +46,7 @@ const toggleMenu = () => {
         <MenuA />
       </div>
     </div>
-    <MobileMenu v-if="isActive" />
+    <!-- <MobileMenu v-if="isActive" /> -->
   </section>
 </template>
 
