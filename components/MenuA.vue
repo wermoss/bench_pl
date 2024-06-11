@@ -22,7 +22,7 @@
           class="block absolute top-[10px]0 pt-[36px] left-0 z-10"
           style="width: min-content"
         >
-          <div class="bg-black pb-4 px-8">
+          <div class="pb-4">
             <a
               v-for="(link, linkIndex) in slice.primary.links"
               :key="`link-${linkIndex}`"

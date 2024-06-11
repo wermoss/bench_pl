@@ -17,7 +17,7 @@ const settings = useSettings();
         </nuxt-link>
       </div>
       <div>
-        <NewMenu />
+        <MenuA />
       </div>
     </div>
   </section>
