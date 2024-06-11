@@ -7,7 +7,6 @@
         :key="index"
         class="relative"
       >
-        <!-- If the slice type is 'test_slice_menu', display 'test_slice_menu_text' and 'standard_link' -->
         <div
           v-if="slice.slice_type === 'multi_link'"
           @mouseover="showLinks[index] = true"
@@ -31,7 +30,6 @@
             </a>
           </div>
         </div>
-        <!-- If the slice type is 'normal_menu', display 'link_text' as a link -->
         <div v-else-if="slice.slice_type === 'simple_link'">
           <a :href="slice.primary.link.url">{{ slice.primary.label }}</a>
         </div>
