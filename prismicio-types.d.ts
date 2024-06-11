@@ -561,7 +561,27 @@ interface TemporaryDocumentData {
    * - **Tab**: Owners
    * - **Documentation**: https://prismic.io/docs/field#group
    */;
-  owners: prismic.GroupField<Simplify<TemporaryDocumentDataOwnersItem>>;
+  owners: prismic.GroupField<Simplify<TemporaryDocumentDataOwnersItem>> /**
+   * Map Title field in *Temporary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.map_title
+   * - **Tab**: Map
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  map_title: prismic.KeyTextField;
+
+  /**
+   * Map Subtitle field in *Temporary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.map_subtitle
+   * - **Tab**: Map
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  map_subtitle: prismic.RichTextField;
 }
 
 /**
