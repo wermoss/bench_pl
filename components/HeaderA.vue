@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import MobileMenu from "@/components/MobileMenu.vue";
 
 const settings = useSettings();
 const isActive = ref(false);
+
+watchEffect(() => {
+  document.body.style.overflow = isActive.value ? "hidden" : "";
+});
 
 const toggleMenu = () => {
   isActive.value = !isActive.value;
