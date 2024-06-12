@@ -13,7 +13,8 @@ useHead({
     {
       hid: "description",
       name: "description",
-      content: "Tutaj wpisz treść meta description",
+      content:
+        "Najnowsze artykuły i porady od naszych ekspertów na temat cen transferowych, doradztwa podatkowego i benchmarkingu.",
     },
   ],
 });
