@@ -7,8 +7,7 @@ const { data: articles } = await useAsyncData("articles", () =>
 );
 
 useHead({
-  title:
-    "Blog - aktualności z zakresu cen transferowych i doradztwa podatkowego",
+  title: "Blog - aktualności z zakresu doradztwa podatkowego",
   meta: [
     {
       hid: "description",
