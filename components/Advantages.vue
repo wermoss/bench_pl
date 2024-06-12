@@ -7,7 +7,7 @@ const { data: temporary } = useAsyncData("temporary", () =>
 );
 
 const advantagesData = computed(() => {
-  return (temporary.value?.data.advantages as any[]) ?? [];
+  return (temporary.value?.data.advantage as any[]) ?? [];
 });
 
 const sectionTitle = computed(() => temporary.value?.data.title ?? "");
@@ -21,30 +21,16 @@ onMounted(() => {
   <section class="bg-gray-100 py-20">
     <div class="max-w-3xl mx-auto text-center pb-20">
       <h3 class="text-5xl">{{ sectionTitle }}</h3>
-      <br />
     </div>
-    <div class="mx-auto max-w-6xl px-8 flex flex-wrap">
+    <div class="mx-auto max-w-6xl px-8 flex flex-wrap text-center text-xs">
       <div
         v-for="(item, index) in advantagesData"
         :key="index"
-        class="w-[350px] h-[350px] p-14 flex flex-col justify-between"
-        :style="{
-          backgroundColor: index % 2 !== 0 ? '#000000' : 'transparent',
-          color: index % 2 !== 0 ? '#FFFFFF' : 'initial',
-        }"
+        class="flex flex-col items-center w-1/2 pb-10"
       >
-        <h3 class="text-[20px] font-normal">{{ item.name }}</h3>
-        <p class="text-[14px] leading-[25px] line-clamp-4 overflow-hidden">
-          {{
-            item.description && item.description[0]
-              ? item.description[0].text
-              : ""
-          }}
-        </p>
-        <div class="flex items-center">
-          <a :href="item.link.url">Czytaj więcej</a>{{ item.color }}
-          <div class="border-t h-px w-8 border-[#e9ad0c] mx-3"></div>
-        </div>
+        <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
+        <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
+        <span><PrismicRichText :field="item.description" /></span>
       </div>
     </div>
   </section>
