@@ -1,34 +1,26 @@
 <template>
-  <div class="h-screen w-screen bg-black z-40 fixed top-0 left-0">
+  <div class="h-screen w-screen bg-black z-40 fixed top-0 left-0 px-8">
     <!-- {{ header?.data.slices1 }} -->
     <div
       v-if="header?.data.slices1"
-      class="flex flex-row space-x-6 uppercase text-[11px] tracking-[0.2em] text-white"
+      class="flex flex-col space-y-6 uppercase text-[11px] tracking-[0.2em] text-white pt-40"
     >
       <div
         v-for="(slice, index) in header.data.slices1"
         :key="index"
         class="relative"
       >
-        <div
-          v-if="slice.slice_type === 'multi_link'"
-          @mouseover="showLinks[index] = true"
-          @mouseleave="showLinks[index] = false"
-        >
+        <div v-if="slice.slice_type === 'multi_link'">
           <div id="test" class="cursor-default">
             {{ slice.primary.active_label }}
           </div>
-          <div
-            v-if="showLinks[index]"
-            class="block absolute top-[10px]0 pt-[36px] left-0 z-10"
-            style="width: min-content"
-          >
-            <div class="pb-4">
+          <div class="block pt-6 left-0 z-10" style="width: min-content">
+            <div>
               <a
                 v-for="(link, linkIndex) in slice.primary.links"
                 :key="`link-${linkIndex}`"
                 :href="link.link.url"
-                class="block whitespace-nowrap py-2"
+                class="block whitespace-nowrap py-2 pl-6"
               >
                 {{ link.label }}
               </a>
