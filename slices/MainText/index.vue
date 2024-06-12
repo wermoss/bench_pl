@@ -21,9 +21,7 @@ defineProps(
     <div
       class="flex flex-col justify-center items-center container mx-auto max-w-2xl pt-20"
     >
-      <span class="text-3xl font-bold text-center">{{
-        slice.primary.title
-      }}</span>
+      <PrismicRichText :field="slice.primary.titleh1" />
       <br />
       <span class="text-center"
         ><PrismicRichText :field="slice.primary.subtitle"

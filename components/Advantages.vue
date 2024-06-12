@@ -30,7 +30,9 @@ onMounted(() => {
       >
         <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
         <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
-        <span><PrismicRichText :field="item.description" /></span>
+        <span class="text-sm"
+          ><PrismicRichText :field="item.description"
+        /></span>
       </div>
     </div>
   </section>

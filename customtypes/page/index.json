@@ -19,7 +19,7 @@
           "label": "Title",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "heading1"
+          "single": "heading1,heading2,heading3"
         }
       },
       "subtitle": {

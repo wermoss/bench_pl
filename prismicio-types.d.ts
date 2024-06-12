@@ -729,6 +729,16 @@ export interface MainTextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   subtitle: prismic.RichTextField;
+
+  /**
+   * Titleh1 field in *MainText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: main_text.primary.titleh1
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  titleh1: prismic.RichTextField;
 }
 
 /**

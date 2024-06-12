@@ -18,8 +18,8 @@ useHead({
     <Slider />
     <Services />
     <Clients />
-    <WorldMap />
     <Advantages />
+    <WorldMap />
   </section>
   <!-- <div class="bg-gray-100">
     <SliceZone
