@@ -509,6 +509,41 @@ export interface TemporaryDocumentDataOwnersItem {
 }
 
 /**
+ * Item in *Temporary → Advantage*
+ */
+export interface TemporaryDocumentDataAdvantageItem {
+  /**
+   * Icon field in *Temporary → Advantage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.advantage[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Temporary → Advantage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.advantage[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Temporary → Advantage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.advantage[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
  * Content for Temporary documents
  */
 interface TemporaryDocumentData {
@@ -581,7 +616,27 @@ interface TemporaryDocumentData {
    * - **Tab**: Map
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  map_subtitle: prismic.RichTextField;
+  map_subtitle: prismic.RichTextField /**
+   * Title field in *Temporary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.title
+   * - **Tab**: Advantages
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  title: prismic.KeyTextField;
+
+  /**
+   * Advantage field in *Temporary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: temporary.advantage[]
+   * - **Tab**: Advantages
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  advantage: prismic.GroupField<Simplify<TemporaryDocumentDataAdvantageItem>>;
 }
 
 /**
@@ -990,6 +1045,7 @@ declare module "@prismicio/client" {
       TemporaryDocumentDataServiceItem,
       TemporaryDocumentDataClientsItem,
       TemporaryDocumentDataOwnersItem,
+      TemporaryDocumentDataAdvantageItem,
       AllDocumentTypes,
       ArticleTitleSlice,
       ArticleTitleSliceDefaultPrimary,

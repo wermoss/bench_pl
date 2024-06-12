@@ -7,7 +7,15 @@ const { data: articles } = await useAsyncData("articles", () =>
 );
 
 useHead({
-  title: "List of Articles",
+  title:
+    "Blog - aktualności z zakresu cen transferowych i doradztwa podatkowego",
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: "Tutaj wpisz treść meta description",
+    },
+  ],
 });
 
 definePageMeta({
