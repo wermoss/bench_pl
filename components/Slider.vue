@@ -36,11 +36,12 @@
             </div>
           </div>
           <div class="flex justify-end items-end absolute bottom-0 right-8">
-            <div
-              class="py-3 px-4 bg-[#e9ac0e] w-[250px] text-black text-center font-semibold text-sm uppercase rounded tracking-wide cursor-pointer"
+            <a
+              href="#kontakt"
+              class="py-3 px-4 bg-[#e9ac0e] w-[250px] text-black text-center font-normal text-sm uppercase rounded tracking-wide cursor-pointer"
             >
-              Kontakt z nami
-            </div>
+              Skontaktuj się z nami
+            </a>
           </div>
         </div>
       </div>

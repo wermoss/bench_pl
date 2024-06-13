@@ -1,11 +1,8 @@
 <template>
-  <div class="text-3xl pb-2">Formularz kontaktowy</div>
+  <div class="text-3xl pb-2" id="kontakt">{{ sectionTitle }}</div>
   <span class="block bg-[#FFCB04] h-[2px] w-20 my-2"></span>
 
-  <div class="pt-2 pb-10">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </div>
+  <div class="pt-2 pb-10">{{ sectionSubtitle }}</div>
   <div class="bg-gray-100">
     <form id="contactForm" @submit.prevent="sendEmail" class="tracking-wide">
       <label for="name" class="text-sm">Imię i nazwisko</label><br />
@@ -82,8 +79,22 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
+<script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
+
+const prismic = usePrismic();
+const { data: form } = useAsyncData("settings", () =>
+  prismic.client.getSingle("settings")
+);
+
+const sectionTitle = computed(() => form.value?.data.name ?? "");
+const sectionSubtitle = computed(() => form.value?.data.description ?? "");
+
+onMounted(() => {
+  if (form.value?.type === "settings") {
+    console.log(form.value);
+  }
+});
 
 const config = useRuntimeConfig();
 const apiKey = config.public.brevoApiKey;

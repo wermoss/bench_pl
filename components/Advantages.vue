@@ -26,7 +26,7 @@ onMounted(() => {
       <div
         v-for="(item, index) in advantagesData"
         :key="index"
-        class="flex flex-col items-center w-1/2 pb-10"
+        class="flex flex-col items-center md:w-1/2 w-full pb-10"
       >
         <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
         <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
