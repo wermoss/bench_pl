@@ -132,7 +132,8 @@ const sendEmail = async () => {
     return;
   }
   try {
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    let response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      // Changed `const` to `let` for reassignment
       method: "POST",
       headers: {
         accept: "application/json",
@@ -212,7 +213,7 @@ const sendEmail = async () => {
     // Clear the form fields
     name.value = "";
     company.value = "";
-    phone.value = "";
+    phone.value = "+48"; // Reset to default value
     email.value = "";
     message.value = "";
     isChecked.value = false;
