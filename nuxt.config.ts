@@ -4,6 +4,12 @@ import { repositoryName, apiEndpoint } from "./slicemachine.config.json";
 export default defineNuxtConfig({
   devtools: false,
 
+  runtimeConfig: {
+    public: {
+      brevoApiKey: process.env.BREVO_API_KEY,
+    },
+  },
+
   app: {
     head: {
       title: "Prismic + Nuxt Minimal Starter",
@@ -20,7 +26,12 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxtjs/prismic", "@nuxtjs/tailwindcss", "nuxt-swiper", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/prismic",
+    "@nuxtjs/tailwindcss",
+    "nuxt-swiper",
+    "@nuxt/image",
+  ],
 
   css: ["~/assets/css/tailwind.css"],
   tailwindcss: {
