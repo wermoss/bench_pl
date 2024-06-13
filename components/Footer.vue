@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-100 py-20">
+  <section class="bg-gray-100 py-20" id="kontakt">
     <div class="mx-auto max-w-6xl px-8">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-5xl">{{ sectionTitle }}</h2>

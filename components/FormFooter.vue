@@ -1,5 +1,5 @@
 <template>
-  <div class="text-3xl pb-2" id="kontakt">{{ sectionTitle }}</div>
+  <div class="text-3xl pb-2">{{ sectionTitle }}</div>
   <span class="block bg-[#FFCB04] h-[2px] w-20 my-2"></span>
 
   <div class="pt-2 pb-10">{{ sectionSubtitle }}</div>
@@ -19,6 +19,14 @@
         id="company"
         name="company"
         v-model="company"
+        class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      /><br />
+      <label for="phone" class="text-sm">Telefon</label><br />
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        v-model="phone"
         class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
       /><br />
       <label for="email" class="text-sm">Adres email</label><br />
@@ -101,6 +109,7 @@ const apiKey = config.public.brevoApiKey;
 const emailStatus = ref("");
 const name = ref("");
 const company = ref("");
+const phone = ref("");
 const email = ref("");
 const message = ref("");
 const isChecked = ref(false);
