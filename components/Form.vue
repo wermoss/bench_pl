@@ -141,35 +141,73 @@ const sendEmail = async () => {
       },
       body: JSON.stringify({
         sender: {
-          name: "Wooboo.pl",
-          email: "services@outletowo.pl",
+          name: "Benchmarket.pl",
+          email: "services@benchmarket.pl",
         },
         replyTo: {
-          email: "services@outletowo.pl",
-          name: "Wooboo.pl",
+          name: "Benchmarket.pl",
+          email: "services@benchmarket.pl",
         },
         templateId: 1,
         params: {
           FORM_NAME: `${name.value}`,
           FORM_COMPANY: `${company.value}`,
+          FORM_PHONE: `${phone.value}`,
           FORM_EMAIL: `${email.value}`,
           FORM_MESSAGE: `${message.value}`,
         },
         to: [
           {
-            email: "konrad@wooboo.pl",
-            name: `${name.value}`,
+            name: "Benchmarket.pl",
+            email: "services@benchmarket.pl",
           },
         ],
-        subject: "Nowy furmularz kontaktowy",
-        htmlContent: `<html><head></head><body><p>Imię i nazwisko: ${name.value}</p><p>${message.value}</p><p>Nazwa firmy: ${company.value}</p><p>Email: ${email.value}</p></body></html>`,
-        textContent: "Nowy furmularz kontaktowy",
+        cc: [
+          {
+            name: "Weronika",
+            email: "wershapes@gmail.com",
+          },
+        ],
+        subject: "Nowa wiadomość ze strony internetowej",
       }),
     });
     console.log(await response.text());
     if (!response.ok) {
       throw new Error("Email sending failed");
     }
+
+    // Drugie wysyłanie emaila, zmień parametry zgodnie z potrzebami
+    response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "api-key": apiKey,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        sender: {
+          name: "Benchmarket.pl",
+          email: "services@benchmarket.pl",
+        },
+        replyTo: {
+          name: "Benchmarket.pl",
+          email: "services@benchmarket.pl",
+        },
+        templateId: 3, // Możesz zmienić ID szablonu dla drugiego emaila
+        to: [
+          {
+            name: name.value,
+            email: email.value,
+          },
+        ],
+        subject: "Potwierdzenie otrzymania wiadomości",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Second email sending failed");
+    }
+
     emailStatus.value = "success";
     // Clear the form fields
     name.value = "";
