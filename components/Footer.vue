@@ -42,7 +42,7 @@
             <PrismicRichText :field="item.description" class="col-span-2" />
           </div>
         </div>
-        <div class="col-span-2 lg:col-span-1 mb-8"><FormFooter /></div>
+        <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
       </div>
     </div>
   </section>

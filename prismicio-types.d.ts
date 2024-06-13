@@ -385,26 +385,26 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   contacts: prismic.GroupField<Simplify<SettingsDocumentDataContactsItem>> /**
-   * text One field in *Settings*
+   * Name field in *Settings*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: settings.text_one
+   * - **API ID Path**: settings.name
    * - **Tab**: Form
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
-  text_one: prismic.KeyTextField;
+  name: prismic.KeyTextField;
 
   /**
-   * text Two field in *Settings*
+   * Description field in *Settings*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: settings.text_two
+   * - **API ID Path**: settings.description
    * - **Tab**: Form
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  text_two: prismic.RichTextField;
+  description: prismic.KeyTextField;
 }
 
 /**
