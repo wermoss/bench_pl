@@ -16,7 +16,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <section class="bg-gray-100 py-20">
+  <section class="bg-white py-20">
     <div class="max-w-6xl mx-auto px-8">
       <div class="max-w-3xl mx-auto text-center pb-20">
         <h3 class="text-5xl">{{ sectionTitle }}</h3>

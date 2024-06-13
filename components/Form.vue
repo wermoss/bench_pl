@@ -3,8 +3,7 @@
   <span class="block bg-[#FFCB04] h-[2px] w-20 my-2"></span>
 
   <div class="pt-2 pb-10">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
+    Skontaktuj się z nami, aby zasięgnąć porady ekspertów.
   </div>
   <div class="bg-gray-100 p-8 rounded">
     <form id="contactForm" @submit.prevent="sendEmail" class="tracking-wide">

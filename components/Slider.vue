@@ -21,7 +21,9 @@
         class="absolute inset-0 flex items-center text-white font-bold"
         :ref="`animatedDiv${index}`"
       >
-        <div class="container mx-auto max-w-6xl py-28 px-8 flex flex-wrap">
+        <div
+          class="container mx-auto max-w-6xl py-28 px-8 flex flex-col relative"
+        >
           <div class="flex items-center">
             <div class="w-[170px] md:w-[250px]">
               <img src="/img/big_rectangle.svg" alt="Opis obrazka" />
@@ -32,7 +34,13 @@
                 <h2>Dokumentacja i analizy</h2>
               </div>
             </div>
-            <!-- {{ slide.text }} -->
+          </div>
+          <div class="flex justify-end items-end absolute bottom-0 right-8">
+            <div
+              class="py-3 px-4 bg-[#e9ac0e] w-[250px] text-black text-center font-semibold text-sm uppercase rounded tracking-wide cursor-pointer"
+            >
+              Kontakt z nami
+            </div>
           </div>
         </div>
       </div>
@@ -46,9 +54,9 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/effect-fade"; // Dodaj to
+import "swiper/css/effect-fade";
 
-// import required modules
+// import Swiper modules
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 export default {
@@ -61,7 +69,6 @@ export default {
       slides: [
         { image: "grzegorz", alt: "Grzegorz Plisz", text: "Transfer Pricing" },
         { image: "michal", alt: "Michał Olejniczak", text: "Transfer Pricing" },
-        // Dodaj tutaj więcej obrazów
       ],
       modules: [Autoplay, Pagination, EffectFade],
     };
