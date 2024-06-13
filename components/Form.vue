@@ -23,6 +23,14 @@
         v-model="company"
         class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
       /><br />
+      <label for="phone" class="text-sm">Telefon</label><br />
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        v-model.lazy="phone"
+        class="w-full mt-2 mb-2 px-4 py-2 outline-none border-[1px] border-[transparent] focus:border-[1px] focus:border-[#000000]"
+      /><br />
       <label for="email" class="text-sm">Adres email</label><br />
       <input
         type="email"
@@ -103,6 +111,7 @@ const apiKey = config.public.brevoApiKey;
 const emailStatus = ref("");
 const name = ref("");
 const company = ref("");
+const phone = ref("+48");
 const email = ref("");
 const message = ref("");
 const isChecked = ref(false);
@@ -111,6 +120,7 @@ const isFormValid = computed(() => {
   return (
     name.value &&
     company.value &&
+    phone.value &&
     email.value &&
     message.value &&
     isChecked.value
@@ -132,13 +142,13 @@ const sendEmail = async () => {
       body: JSON.stringify({
         sender: {
           name: "Wooboo.pl",
-          email: "konrad@wooboo.pl",
+          email: "services@outletowo.pl",
         },
         replyTo: {
-          email: "konrad@wooboo.pl",
+          email: "services@outletowo.pl",
           name: "Wooboo.pl",
         },
-        templateId: 5,
+        templateId: 1,
         params: {
           FORM_NAME: `${name.value}`,
           FORM_COMPANY: `${company.value}`,
@@ -148,10 +158,6 @@ const sendEmail = async () => {
         to: [
           {
             email: "konrad@wooboo.pl",
-            name: `${name.value}`,
-          },
-          {
-            email: "michal.olejniczak@benchmarket.pl",
             name: `${name.value}`,
           },
         ],
@@ -168,6 +174,7 @@ const sendEmail = async () => {
     // Clear the form fields
     name.value = "";
     company.value = "";
+    phone.value = "";
     email.value = "";
     message.value = "";
     isChecked.value = false;
