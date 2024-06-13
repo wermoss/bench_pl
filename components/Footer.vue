@@ -2,7 +2,7 @@
   <section class="bg-gray-100 py-20">
     <div class="mx-auto max-w-6xl px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h3 class="text-5xl">{{ sectionTitle }}</h3>
+        <h2 class="text-5xl">{{ sectionTitle }}</h2>
         <div class="py-10 text-lg">
           <PrismicRichText :field="sectionSubtitle" />
         </div>
@@ -36,11 +36,13 @@
                 item.phone_number
               }}</a>
               <span class="hidden sm:inline">{{ item.phone_number }}</span>
-              <a :href="`mailto:${item.email}`">{{ item.email }}</a>
+              <a :href="`mailto:${item.email}`">{{ item.email }}</a
+              ><br />
             </div>
+            <PrismicRichText :field="item.description" class="col-span-2" />
           </div>
         </div>
-        <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
+        <div class="col-span-2 lg:col-span-1 mb-8"><FormFooter /></div>
       </div>
     </div>
   </section>

@@ -253,6 +253,16 @@ export interface SettingsDocumentDataContactsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkedin_profile: prismic.KeyTextField;
+
+  /**
+   * Description field in *Settings → Contacts*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contacts[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
 }
 
 /**
