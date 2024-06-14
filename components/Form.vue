@@ -180,6 +180,12 @@ const sendEmailAndSMS = async () => {
             email: "services@benchmarket.pl",
           },
         ],
+        cc: [
+          {
+            name: "Michal Olejniczak",
+            email: "michal.olejniczak@benchmarket.pl",
+          },
+        ],
         subject: "Nowa wiadomość ze strony internetowej",
       }),
     });
@@ -228,7 +234,7 @@ const sendEmailAndSMS = async () => {
       // console.log("SMS sent successfully to", userPhone.value); // Corrected to use 'userPhone.value'
 
       await sendSMS(
-        "48450066055",
+        "48660440456",
         "Panowie, wlasnie wypelniono formularz na stronie internetowej. Warto zajrzec na maila :)"
       );
       // console.log("SMS sent successfully to", "48450066055");
