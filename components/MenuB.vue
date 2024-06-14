@@ -1,3 +1,25 @@
+<script setup>
+import { ref, watch } from "vue";
+const prismic = usePrismic();
+const { data: header } = useAsyncData("header", async () => {
+  const response = await prismic.client.getSingle("settings");
+  //   console.log(response);
+  return response;
+});
+
+const showLinks = ref([]);
+watch(header, (newVal) => {
+  if (newVal?.data.slices1) {
+    showLinks.value = newVal.data.slices1.map(() => false);
+  }
+});
+
+const router = useRouter();
+const route = useRoute();
+
+const redirect = (url) => url !== route.path && router.push(url);
+</script>
+
 <template>
   <!-- {{ header?.data.slices1 }} -->
   <div
@@ -26,8 +48,8 @@
             <a
               v-for="(link, linkIndex) in slice.primary.links"
               :key="`link-${linkIndex}`"
-              :href="link.link.url"
-              class="block whitespace-nowrap py-2"
+              @click.stop="redirect(link.link.url)"
+              class="block whitespace-nowrap py-2 cursor-pointer"
             >
               {{ link.label }}
             </a>
@@ -35,25 +57,13 @@
         </div>
       </div>
       <div v-else-if="slice.slice_type === 'simple_link'">
-        <a :href="slice.primary.link.url">{{ slice.primary.label }}</a>
+        <a
+          @click.stop="redirect(slice.primary.link.url)"
+          class="cursor-pointer"
+        >
+          {{ slice.primary.label }}
+        </a>
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, watch } from "vue";
-const prismic = usePrismic();
-const { data: header } = useAsyncData("header", async () => {
-  const response = await prismic.client.getSingle("settings");
-  //   console.log(response);
-  return response;
-});
-
-const showLinks = ref([]);
-watch(header, (newVal) => {
-  if (newVal?.data.slices1) {
-    showLinks.value = newVal.data.slices1.map(() => false);
-  }
-});
-</script>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, computed } from "vue";
+import serializer from "../app/prismic/secondSerializer";
 
 const prismic = usePrismic();
 const { data: temporary } = useAsyncData("temporary", () =>
@@ -15,6 +16,8 @@ const sectionTitle = computed(() => temporary.value?.data.title ?? "");
 onMounted(() => {
   console.log(advantagesData.value);
 });
+
+const secondSerializer = serializer;
 </script>
 
 <template>
@@ -31,7 +34,9 @@ onMounted(() => {
         <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
         <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
         <span class="text-sm"
-          ><PrismicRichText :field="item.description"
+          ><PrismicRichText
+            :field="item.description"
+            :html-serializer="secondSerializer"
         /></span>
       </div>
     </div>
