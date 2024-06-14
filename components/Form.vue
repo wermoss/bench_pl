@@ -165,8 +165,8 @@ const sendEmail = async () => {
         ],
         cc: [
           {
-            name: "Weronika",
-            email: "wershapes@gmail.com",
+            name: "Adrian",
+            email: "adrian.wojcik4809@gmail.com",
           },
         ],
         subject: "Nowa wiadomość ze strony internetowej",
@@ -204,6 +204,38 @@ const sendEmail = async () => {
         subject: "Potwierdzenie otrzymania wiadomości",
       }),
     });
+
+    const sendSMS = async () => {
+      try {
+        const response = await fetch("https://api.brevo.com/v3/sms/send", {
+          // Załóżmy, że to jest prawidłowy endpoint dla SMS
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "api-key": apiKey,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            type: "transactional",
+            unicodeEnabled: false,
+            sender: "Benchmarket",
+            recipient: phone.value,
+            content:
+              "Dziekujemy za zainteresowanie naszym sklepem. Wyslemy Tobie kod rabatowy, gdy tylko wystartujemy / Outletowo.pl.",
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("SMS sending failed");
+        }
+
+        console.log("SMS sent successfully");
+        // Tutaj możesz zaktualizować UI lub status, aby odzwierciedlić pomyślne wysłanie SMS-a
+      } catch (error) {
+        console.error(error);
+        // Obsługa błędów, np. aktualizacja UI
+      }
+    };
 
     if (!response.ok) {
       throw new Error("Second email sending failed");
