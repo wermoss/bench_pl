@@ -36,6 +36,14 @@
           "thumbnails": []
         }
       },
+      "testrel": {
+        "type": "Link",
+        "config": {
+          "label": "testrel",
+          "select": "document",
+          "customtypes": ["caregory"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -1,27 +1,86 @@
 <script setup lang="ts">
-import { unref, toRaw, reactive } from "vue";
+import { unref, toRaw, reactive, ref, computed } from "vue";
 
 const { client } = usePrismic();
 const articlesRef = await useAsyncData("articles", () =>
   client.getAllByType("article")
 );
 
-let articles = toRaw(unref(articlesRef.data));
-articles = articles.sort(
-  (a, b) =>
-    new Date(b.first_publication_date) - new Date(a.first_publication_date)
-);
+// Używamy reaktywnej referencji do przechowywania artykułów
+const articles = ref([]);
+
+// Przenosimy logikę sortowania do obliczanego pola
+const sortedArticles = computed(() => {
+  const rawArticles = toRaw(unref(articlesRef.data));
+  return rawArticles.sort(
+    (a, b) =>
+      new Date(b.first_publication_date) - new Date(a.first_publication_date)
+  );
+});
+
+// Aktualizujemy reaktywną referencję artykułów po pobraniu i sortowaniu
+sortedArticles.value.forEach((article) => {
+  articles.value.push(article);
+});
 
 const isHovered = reactive({});
+const selectedCategory = ref(null);
 
-articles.forEach((article) => {
+// Pobieram nazwy kategorii
+const getCategoryName = async (article) => {
+  if (article.data.testrel.id) {
+    const category = await client.getByID(article.data.testrel.id);
+    return category ? category.data.name : "Brak kategorii";
+  }
+  return "Brak kategorii";
+};
+
+// Pobieranie nazw kategorii dla każdego artykułu
+for (const article of articles.value) {
   isHovered[article.id] = false;
+  article.categoryName = await getCategoryName(article);
+}
+
+// Obliczanie liczby artykułów w każdej kategorii
+const categoryCounts = computed(() => {
+  const counts = {};
+  articles.value.forEach((article) => {
+    const { categoryName } = article;
+    if (counts[categoryName]) {
+      counts[categoryName]++;
+    } else {
+      counts[categoryName] = 1;
+    }
+  });
+  return counts;
+});
+
+// Filtrowanie artykułów na podstawie wybranej kategorii
+const filteredArticles = computed(() => {
+  if (!selectedCategory.value) {
+    return articles.value;
+  }
+  return articles.value.filter(
+    (article) => article.categoryName === selectedCategory.value
+  );
 });
 </script>
+
 <template>
   <div class="max-w-6xl mx-auto px-8">
+    <div class="mb-8">
+      <span class="font-bold">Kategorie:</span>
+      <a
+        v-for="(count, category) in categoryCounts"
+        :key="category"
+        class="ml-2 cursor-pointer"
+        @click="selectedCategory.value = category"
+      >
+        {{ category }} ({{ count }})
+      </a>
+    </div>
     <div
-      v-for="article in articles"
+      v-for="article in filteredArticles"
       :key="article.id"
       class="flex flex-col lg:flex-row gap-16 mb-10 items-center"
     >
@@ -55,6 +114,10 @@ articles.forEach((article) => {
             ).substring(0, 250) + " ..."
           }}
         </p>
+        <PrismicLink :field="article.data.testrel">{{
+          article.categoryName
+        }}</PrismicLink
+        ><br />
         <nuxt-link :to="`/blog/${article.uid}`">Czytaj wiecej</nuxt-link>
       </div>
     </div>

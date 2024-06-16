@@ -47,6 +47,17 @@ interface ArticleDocumentData {
   photo: prismic.ImageField<never>;
 
   /**
+   * testrel field in *Article*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.testrel
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  testrel: prismic.ContentRelationshipField<"caregory">;
+
+  /**
    * Slice Zone field in *Article*
    *
    * - **Field Type**: Slice Zone
@@ -102,6 +113,38 @@ export type ArticleDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<ArticleDocumentData>,
     "article",
+    Lang
+  >;
+
+/**
+ * Content for Caregory documents
+ */
+interface CaregoryDocumentData {
+  /**
+   * Name field in *Caregory*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: caregory.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * Caregory document from Prismic
+ *
+ * - **API ID**: `caregory`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CaregoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CaregoryDocumentData>,
+    "caregory",
     Lang
   >;
 
@@ -667,6 +710,7 @@ export type TemporaryDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ArticleDocument
+  | CaregoryDocument
   | PageDocument
   | SettingsDocument
   | TemporaryDocument;
@@ -1053,6 +1097,8 @@ declare module "@prismicio/client" {
       ArticleDocument,
       ArticleDocumentData,
       ArticleDocumentDataSlicesSlice,
+      CaregoryDocument,
+      CaregoryDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

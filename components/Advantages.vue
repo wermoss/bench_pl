@@ -25,11 +25,13 @@ const secondSerializer = serializer;
     <div class="max-w-3xl mx-auto text-center pb-20">
       <h3 class="text-5xl">{{ sectionTitle }}</h3>
     </div>
-    <div class="mx-auto max-w-6xl px-8 flex flex-wrap text-center text-xs">
+    <div
+      class="mx-auto max-w-6xl px-8 grid grid-cols-1 md:grid-cols-2 gap-10 text-center text-xs"
+    >
       <div
         v-for="(item, index) in advantagesData"
         :key="index"
-        class="flex flex-col items-center md:w-1/2 w-full pb-10"
+        class="flex flex-col items-center pb-10"
       >
         <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
         <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
