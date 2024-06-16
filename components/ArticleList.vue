@@ -8,15 +8,26 @@ const articlesRef = await useAsyncData("articles", () =>
 
 // Używamy reaktywnej referencji do przechowywania artykułów
 const articles = ref([]);
+const selectedCategory = ref(null);
 
 // Przenosimy logikę sortowania do obliczanego pola
 const sortedArticles = computed(() => {
   const rawArticles = toRaw(unref(articlesRef.data));
-  return rawArticles.sort(
-    (a, b) =>
-      new Date(b.first_publication_date) - new Date(a.first_publication_date)
+  return (
+    rawArticles
+      // .filter((e) => e.testrel === selectedCategory.value)
+      .sort(
+        (a, b) =>
+          new Date(b.first_publication_date) -
+          new Date(a.first_publication_date)
+      )
   );
 });
+
+watch(
+  () => selectedCategory.value,
+  () => console.log(selectedCategory.value)
+);
 
 // Aktualizujemy reaktywną referencję artykułów po pobraniu i sortowaniu
 sortedArticles.value.forEach((article) => {
@@ -24,7 +35,6 @@ sortedArticles.value.forEach((article) => {
 });
 
 const isHovered = reactive({});
-const selectedCategory = ref(null);
 
 // Pobieram nazwy kategorii
 const getCategoryName = async (article) => {
@@ -74,7 +84,7 @@ const filteredArticles = computed(() => {
         v-for="(count, category) in categoryCounts"
         :key="category"
         class="ml-2 cursor-pointer"
-        @click="selectedCategory.value = category"
+        @click="selectedCategory = category"
       >
         {{ category }} ({{ count }})
       </a>
