@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-30">
     <div v-if="header?.data.slices1">
       <div v-for="(slice, index) in header.data.slices1" :key="index">
         <!-- Wyświetl dane z slice -->

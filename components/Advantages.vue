@@ -23,7 +23,7 @@ const secondSerializer = serializer;
 <template>
   <section class="py-20">
     <div class="max-w-3xl mx-auto text-center pb-20">
-      <h3 class="text-4xl">{{ sectionTitle }}</h3>
+      <h3 class="text-3xl lg:text-4xl px-8">{{ sectionTitle }}</h3>
     </div>
     <div
       class="mx-auto max-w-6xl px-8 grid grid-cols-1 md:grid-cols-2 gap-10 text-center text-xs"
@@ -34,7 +34,9 @@ const secondSerializer = serializer;
         class="flex flex-col items-center pb-10"
       >
         <div class="w-20 pb-6"><PrismicImage :field="item.icon" /></div>
-        <h2 class="text-[20px] font-normal pb-6">{{ item.title }}</h2>
+        <h2 class="text-[20px] font-normal pb-6 leading-[25px]">
+          {{ item.title }}
+        </h2>
         <span class="text-sm"
           ><PrismicRichText
             :field="item.description"
