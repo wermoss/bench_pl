@@ -33,8 +33,7 @@ function showMoreQuestions() {
 <template>
   <section class="py-20">
     <div class="max-w-3xl mx-auto text-center pb-20">
-      <h3 class="text-4xl pb-10">{{ faq.data.title }}</h3>
-      <p>{{ faq.data.subtitle }}</p>
+      <h3 class="text-4xl">{{ faq.data.title }}</h3>
     </div>
     <div class="mx-auto max-w-6xl px-8">
       <div
@@ -52,7 +51,7 @@ function showMoreQuestions() {
           <div class="font-bold">
             {{ item.question }}
           </div>
-          <div class="text-lg text-blue-600">
+          <div class="text-xl">
             <span v-if="visibleAnswersIndices.includes(index)">-</span>
             <span v-else>+</span>
           </div>
@@ -60,7 +59,7 @@ function showMoreQuestions() {
         <transition name="fade">
           <div
             v-if="visibleAnswersIndices.includes(index)"
-            class="answer mt-2 text-gray-700"
+            class="answer mt-6 mb-5 pr-[100px] text-gray-700 italic"
           >
             {{ item.answer }}
           </div>
