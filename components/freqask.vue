@@ -1,9 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 const { client } = usePrismic();
 const { data: faq } = await useAsyncData("faq", () => client.getSingle("faq"));
 const visibleAnswersIndices = ref([]);
-const displayedQuestionsCount = ref(5); // Pokazuje 5 pcs przy ladowaniu strony
+const displayedQuestionsCount = ref(5); // Ustawienie domyślnej wartości
+const showMoreIncrement = ref(3); // Ustawienie domyślnej wartości
+
+// WatchEffect do aktualizacji displayedQuestionsCount i showMoreIncrement po załadowaniu danych
+watchEffect(() => {
+  if (faq.value && faq.value.data.start) {
+    displayedQuestionsCount.value = faq.value.data.start;
+  }
+  if (faq.value && faq.value.data.show_more) {
+    showMoreIncrement.value = faq.value.data.show_more; // Aktualizacja na podstawie danych Prismic
+  }
+});
 
 function toggleAnswerVisibility(index) {
   const currentIndex = visibleAnswersIndices.value.indexOf(index);
@@ -15,7 +26,7 @@ function toggleAnswerVisibility(index) {
 }
 
 function showMoreQuestions() {
-  displayedQuestionsCount.value += 3; // Pokazuje 3 pcs po kazdym kliknieciu
+  displayedQuestionsCount.value += showMoreIncrement.value; // Użyj dynamicznej wartości
 }
 </script>
 
@@ -25,48 +36,46 @@ function showMoreQuestions() {
       <h3 class="text-4xl pb-10">{{ faq.data.title }}</h3>
       <p>{{ faq.data.subtitle }}</p>
     </div>
-    <div <div class="mx-auto max-w-6xl px-8">
+    <div class="mx-auto max-w-6xl px-8">
       <div
-    v-for="(item, index) in faq.data.questions.slice(
-      0,
-      displayedQuestionsCount
-    )"
-    :key="index"
-    class="border-b border-gray-200 py-4"
-  >
-    <div
-      @click="toggleAnswerVisibility(index)"
-      class="flex justify-between items-center cursor-pointer select-none"
-    >
-      <div class="font-bold">
-        {{ item.question }}
-      </div>
-      <div class="text-lg text-blue-600">
-        <span v-if="visibleAnswersIndices.includes(index)">-</span>
-        <span v-else>+</span>
-      </div>
-    </div>
-    <transition name="fade">
-      <div
-        v-if="visibleAnswersIndices.includes(index)"
-        class="answer mt-2 text-gray-700"
+        v-for="(item, index) in faq.data.questions.slice(
+          0,
+          displayedQuestionsCount
+        )"
+        :key="index"
+        class="border-b border-gray-200 py-4"
       >
-        {{ item.answer }}
+        <div
+          @click="toggleAnswerVisibility(index)"
+          class="flex justify-between items-center cursor-pointer select-none"
+        >
+          <div class="font-bold">
+            {{ item.question }}
+          </div>
+          <div class="text-lg text-blue-600">
+            <span v-if="visibleAnswersIndices.includes(index)">-</span>
+            <span v-else>+</span>
+          </div>
+        </div>
+        <transition name="fade">
+          <div
+            v-if="visibleAnswersIndices.includes(index)"
+            class="answer mt-2 text-gray-700"
+          >
+            {{ item.answer }}
+          </div>
+        </transition>
       </div>
-    </transition>
-  </div>
-  <!-- Show More button -->
-  <button
-    v-if="displayedQuestionsCount < faq.data.questions.length"
-    @click="showMoreQuestions"
-    class="mt-4 px-4 py-2 bg-gray-900 text-white rounded"
-  >
-    Pokaż więcej
-  </button>
+      <!-- Show More button -->
+      <button
+        v-if="displayedQuestionsCount < faq.data.questions.length"
+        @click="showMoreQuestions"
+        class="mt-4 px-4 py-2 bg-gray-900 text-white rounded"
+      >
+        Pokaż więcej
+      </button>
     </div>
   </section>
-
-
 </template>
 
 <style>

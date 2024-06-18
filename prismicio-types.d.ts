@@ -189,6 +189,28 @@ export interface FaqDocumentDataQuestionsItem {
  */
 interface FaqDocumentData {
   /**
+   * Start field in *FAQ*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.start
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  start: prismic.NumberField;
+
+  /**
+   * Show More field in *FAQ*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.show_more
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  show_more: prismic.NumberField;
+
+  /**
    * Title field in *FAQ*
    *
    * - **Field Type**: Text

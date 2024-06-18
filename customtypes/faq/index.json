@@ -6,6 +6,20 @@
   "status": true,
   "json": {
     "Main": {
+      "start": {
+        "type": "Number",
+        "config": {
+          "label": "Start",
+          "placeholder": ""
+        }
+      },
+      "show_more": {
+        "type": "Number",
+        "config": {
+          "label": "Show More",
+          "placeholder": ""
+        }
+      },
       "title": {
         "type": "Text",
         "config": {
