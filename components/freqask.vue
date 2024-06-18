@@ -59,7 +59,7 @@ function showMoreQuestions() {
         <transition name="fade">
           <div
             v-if="visibleAnswersIndices.includes(index)"
-            class="answer mt-6 mb-5 pr-[100px] text-gray-700 italic"
+            class="answer mt-6 mb-5 pr-[40px] lg:pr-[100px] text-gray-700 italic"
           >
             {{ item.answer }}
           </div>

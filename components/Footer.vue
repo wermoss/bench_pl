@@ -41,6 +41,16 @@
             </div>
             <PrismicRichText :field="item.description" class="col-span-2" />
           </div>
+          <div class="flex flex-row">
+            <div class="w-[100px] bg-black mr-8">LOGO</div>
+            <div>
+              <span class="font-bold">{{ companyName }}</span
+              ><br />
+              {{ address }}<br />
+              {{ nip }}<br />
+              {{ regon }}
+            </div>
+          </div>
         </div>
         <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
       </div>

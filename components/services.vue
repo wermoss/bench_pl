@@ -20,7 +20,7 @@ const sectionSubtitle = computed(
 </script>
 <template>
   <section class="bg-gray-100 py-20">
-    <div class="max-w-3xl mx-auto text-center pb-20">
+    <div class="max-w-3xl mx-auto text-center pb-20 px-8">
       <h3 class="text-3xl lg:text-4xl">{{ sectionTitle }}</h3>
       <br />
       <PrismicRichText :field="sectionSubtitle" />

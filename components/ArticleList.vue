@@ -78,7 +78,7 @@ const filteredArticles = computed(() => {
 
 <template>
   <div class="max-w-6xl mx-auto px-8">
-    <div class="mb-8">
+    <div class="mb-8 flex justify-center items-center pb-10">
       <a
         id="cat"
         v-for="(count, category) in categoryCounts"
