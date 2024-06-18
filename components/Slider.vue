@@ -26,10 +26,17 @@
         >
           <div class="flex items-center">
             <div class="w-[170px] md:w-[250px]">
-              <img src="/img/big_rectangle.svg" alt="Opis obrazka" />
+              <img src="/img/big_rectangle.svg" alt="benchmarket" />
             </div>
             <div class="flex flex-col items-start ml-[-100px] md:ml-[-150px]">
-              <div class="text-3xl md:text-5xl"><h1>Ceny transferowe</h1></div>
+              <!-- Renderuj h1 tylko dla pierwszego slajdu -->
+              <div v-if="index === 0" class="text-3xl md:text-5xl">
+                <h1>Ceny transferowe</h1>
+              </div>
+              <!-- Dla pozostałych slajdów użyj h2 lub innego znacznika -->
+              <div v-else class="text-3xl md:text-5xl">
+                <h2>Ceny transferowe</h2>
+              </div>
               <div class="text-xl md:text-3xl font-thin pt-2">
                 <h2>Dokumentacja i analizy</h2>
               </div>

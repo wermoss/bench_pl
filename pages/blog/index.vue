@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { components } from "~/slices";
-
+<script setup>
 const { client } = usePrismic();
-const { data: articles } = await useAsyncData("articles", () =>
-  client.getAllByType("article")
+
+const { data: blogData } = await useAsyncData("blogData", () =>
+  client.getSingle("blog")
 );
+
+const title = ref(blogData.value.data.title);
+const subtitle = ref(blogData.value.data.subtitle);
 
 useHead({
   title: "Blog - aktualności z zakresu doradztwa podatkowego",
@@ -24,9 +26,12 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="py-20">
-    <ArticleList />
+  <div class="max-w-3xl mx-auto text-center py-20 px-8">
+    <h1 class="text-4xl font-medium pb-6">{{ title }}</h1>
+    <p></p>
+    {{ subtitle }}
   </div>
+  <ArticleList />
 </template>
 <!-- <template>
   <div>

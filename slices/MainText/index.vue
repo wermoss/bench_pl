@@ -19,7 +19,7 @@ defineProps(
     :data-slice-variation="slice.variation"
   >
     <div
-      class="flex flex-col justify-center items-center container mx-auto max-w-2xl pt-20"
+      class="flex flex-col justify-center items-center container mx-auto max-w-2xl pt-20 text-center"
     >
       <PrismicRichText :field="slice.primary.titleh1" />
       <br />

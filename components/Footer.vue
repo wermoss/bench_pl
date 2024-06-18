@@ -2,12 +2,12 @@
   <section class="bg-gray-100 py-20" id="kontakt">
     <div class="mx-auto max-w-6xl px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-5xl">{{ sectionTitle }}</h2>
-        <div class="py-10 text-lg">
+        <h2 class="text-4xl">{{ sectionTitle }}</h2>
+        <div class="pt-10 pb-20 text-lg">
           <PrismicRichText :field="sectionSubtitle" />
         </div>
       </div>
-      <div class="grid lg:grid-cols-2 gap-2">
+      <div class="grid lg:grid-cols-2 gap-20">
         <div class="col-span-2 lg:col-span-1">
           <div
             v-for="(item, index) in contacts"
