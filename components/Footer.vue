@@ -47,10 +47,9 @@
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-import { components } from "~/slices";
-import { watch } from "vue";
+<script setup>
+import { onMounted } from "vue";
+import { usePrismic } from "@prismicio/vue";
 
 const prismic = usePrismic();
 const { data: footer } = useAsyncData("footer", async () => {
@@ -68,4 +67,31 @@ const sectionTitle = computed(() => footerData.value?.section_title ?? "");
 const sectionSubtitle = computed(
   () => footerData.value?.section_subtitle ?? ""
 );
+
+onMounted(() => {
+  loadChatbotScript();
+});
+
+function loadChatbotScript() {
+  // Konfiguracja chatbota
+  window.embeddedChatbotConfig = {
+    chatbotId: "NelhpiLV5CiQoT2FTliVG",
+    domain: "www.chatbase.co",
+  };
+
+  // Sprawdzenie, czy skrypt chatbota jest już załadowany
+  if (
+    document.querySelector('script[src="https://www.chatbase.co/embed.min.js"]')
+  ) {
+    return; // Skrypt jest już załadowany, nie ładujemy go ponownie
+  }
+
+  // Tworzenie i dodawanie skryptu chatbota
+  const script = document.createElement("script");
+  script.src = "https://www.chatbase.co/embed.min.js";
+  script.defer = true;
+  script.setAttribute("chatbotId", "NelhpiLV5CiQoT2FTliVG");
+  script.setAttribute("domain", "www.chatbase.co");
+  document.head.appendChild(script);
+}
 </script>

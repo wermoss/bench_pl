@@ -27,13 +27,6 @@
           "placeholder": ""
         }
       },
-      "subtitle": {
-        "type": "Text",
-        "config": {
-          "label": "Subtitle",
-          "placeholder": ""
-        }
-      },
       "questions": {
         "type": "Group",
         "config": {
