@@ -39,7 +39,7 @@ const toggleMenu = () => {
         </button>
       </div>
       <div class="hidden lg:block">
-        <MenuA />
+        <MenuB />
       </div>
     </div>
     <MobileMenu v-if="isActive" />
