@@ -130,6 +130,17 @@ interface CaregoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Caregory*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: caregory.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
 }
 
 /**
@@ -147,6 +158,81 @@ export type CaregoryDocument<Lang extends string = string> =
     "caregory",
     Lang
   >;
+
+/**
+ * Item in *FAQ → Questions*
+ */
+export interface FaqDocumentDataQuestionsItem {
+  /**
+   * Question field in *FAQ → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.questions[].question
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  question: prismic.KeyTextField;
+
+  /**
+   * Answer field in *FAQ → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.questions[].answer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  answer: prismic.KeyTextField;
+}
+
+/**
+ * Content for FAQ documents
+ */
+interface FaqDocumentData {
+  /**
+   * Title field in *FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Questions field in *FAQ*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.questions[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  questions: prismic.GroupField<Simplify<FaqDocumentDataQuestionsItem>>;
+}
+
+/**
+ * FAQ document from Prismic
+ *
+ * - **API ID**: `faq`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FaqDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
 
 type PageDocumentDataSlicesSlice = MainTextSlice | PhotoSlice | RichTextSlice;
 
@@ -711,6 +797,7 @@ export type TemporaryDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ArticleDocument
   | CaregoryDocument
+  | FaqDocument
   | PageDocument
   | SettingsDocument
   | TemporaryDocument;
@@ -1099,6 +1186,9 @@ declare module "@prismicio/client" {
       ArticleDocumentDataSlicesSlice,
       CaregoryDocument,
       CaregoryDocumentData,
+      FaqDocument,
+      FaqDocumentData,
+      FaqDocumentDataQuestionsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

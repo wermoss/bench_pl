@@ -79,14 +79,15 @@ const filteredArticles = computed(() => {
 <template>
   <div class="max-w-6xl mx-auto px-8">
     <div class="mb-8">
-      <span class="font-bold">Kategorie:</span>
       <a
+        id="cat"
         v-for="(count, category) in categoryCounts"
         :key="category"
         class="ml-2 cursor-pointer"
         @click="selectedCategory = category"
       >
-        {{ category }} ({{ count }})
+        {{ category }}
+        <!-- ({{ count }}) -->
       </a>
     </div>
     <div
@@ -116,6 +117,11 @@ const filteredArticles = computed(() => {
         <p class="pb-4 flex flex-row text-sm">
           <img src="/img/icon-calendar.svg" alt="Icon" class="w-[15px] mr-3" />
           {{ new Date(article.first_publication_date).toLocaleDateString() }}
+          <!-- <span class="pl-4"
+            ><PrismicLink :field="article.data.testrel">{{
+              article.categoryName
+            }}</PrismicLink></span
+          > -->
         </p>
         <p class="pb-4">
           {{
@@ -124,11 +130,9 @@ const filteredArticles = computed(() => {
             ).substring(0, 250) + " ..."
           }}
         </p>
-        <PrismicLink :field="article.data.testrel">{{
-          article.categoryName
-        }}</PrismicLink
-        ><br />
-        <nuxt-link :to="`/blog/${article.uid}`">Czytaj wiecej</nuxt-link>
+        <div class="flex justify-end">
+          <nuxt-link :to="`/blog/${article.uid}`">Czytaj wiecej</nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -137,5 +141,24 @@ const filteredArticles = computed(() => {
 <style scoped>
 .grayscale {
   filter: grayscale(100%);
+}
+a#cat {
+  --s: 15px; /* the size on the corner */
+  --t: 1px; /* the thickness of the border */
+  --g: 15px; /* the gap between the border and image */
+
+  padding: calc(var(--g) + var(--t));
+  outline: var(--t) solid black; /* the color here */
+  outline-offset: calc(-1 * var(--t));
+  -webkit-mask:
+    conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0 /
+      calc(100% - var(--s)) calc(100% - var(--s)),
+    linear-gradient(#000 0 0) content-box;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+span#cal:hover img {
+  outline-offset: calc(var(--g) / -1);
 }
 </style>

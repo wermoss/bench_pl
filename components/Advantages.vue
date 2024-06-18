@@ -21,7 +21,7 @@ const secondSerializer = serializer;
 </script>
 
 <template>
-  <section class="bg-gray-100 py-20">
+  <section class="py-20">
     <div class="max-w-3xl mx-auto text-center pb-20">
       <h3 class="text-5xl">{{ sectionTitle }}</h3>
     </div>

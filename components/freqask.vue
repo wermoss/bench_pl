@@ -1,0 +1,85 @@
+<script setup>
+import { ref } from "vue";
+const { client } = usePrismic();
+const { data: faq } = await useAsyncData("faq", () => client.getSingle("faq"));
+const visibleAnswersIndices = ref([]);
+const displayedQuestionsCount = ref(5); // Pokazuje 5 pcs przy ladowaniu strony
+
+function toggleAnswerVisibility(index) {
+  const currentIndex = visibleAnswersIndices.value.indexOf(index);
+  if (currentIndex === -1) {
+    visibleAnswersIndices.value.push(index);
+  } else {
+    visibleAnswersIndices.value.splice(currentIndex, 1);
+  }
+}
+
+function showMoreQuestions() {
+  displayedQuestionsCount.value += 3; // Pokazuje 3 pcs po kazdym kliknieciu
+}
+</script>
+
+<template>
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto text-center pb-20">
+      <h3 class="text-4xl pb-10">{{ faq.data.title }}</h3>
+      <p>{{ faq.data.subtitle }}</p>
+    </div>
+    <div <div class="mx-auto max-w-6xl px-8">
+      <div
+    v-for="(item, index) in faq.data.questions.slice(
+      0,
+      displayedQuestionsCount
+    )"
+    :key="index"
+    class="border-b border-gray-200 py-4"
+  >
+    <div
+      @click="toggleAnswerVisibility(index)"
+      class="flex justify-between items-center cursor-pointer select-none"
+    >
+      <div class="font-bold">
+        {{ item.question }}
+      </div>
+      <div class="text-lg text-blue-600">
+        <span v-if="visibleAnswersIndices.includes(index)">-</span>
+        <span v-else>+</span>
+      </div>
+    </div>
+    <transition name="fade">
+      <div
+        v-if="visibleAnswersIndices.includes(index)"
+        class="answer mt-2 text-gray-700"
+      >
+        {{ item.answer }}
+      </div>
+    </transition>
+  </div>
+  <!-- Show More button -->
+  <button
+    v-if="displayedQuestionsCount < faq.data.questions.length"
+    @click="showMoreQuestions"
+    class="mt-4 px-4 py-2 bg-gray-900 text-white rounded"
+  >
+    Pokaż więcej
+  </button>
+    </div>
+  </section>
+
+
+</template>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+</style>
