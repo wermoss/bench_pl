@@ -8,8 +8,10 @@ const { data: page } = useAsyncData("index", async () => {
   return data;
 });
 
-useHead({
-  title: prismic.asText(page.value?.data.title),
+useSeoMeta({
+  title: "Benchmarket - Doradztwo podatkowe i ceny transferowe",
+  description:
+    "Specjalizujemy się w doradztwie podatkowym, dokumentacji cen transferowych i benchmarkingu. Skontaktuj się z nami i zoptymalizuj swoje finanse.",
 });
 </script>
 

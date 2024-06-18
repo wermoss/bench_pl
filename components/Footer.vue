@@ -41,8 +41,10 @@
             </div>
             <PrismicRichText :field="item.description" class="col-span-2" />
           </div>
-          <div class="flex flex-row">
-            <div class="w-[100px] bg-black mr-8">LOGO</div>
+          <div class="flex flex-row pt-20">
+            <div class="w-[100px] bg-black mr-8">
+              <img src="/img/bench-yellow.svg" />
+            </div>
             <div>
               <span class="font-bold">{{ companyName }}</span
               ><br />
