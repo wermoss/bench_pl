@@ -31,9 +31,21 @@ export default defineNuxtConfig({
     "@nuxtjs/prismic",
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
-    "@nuxt/image",
     // "nuxt-security",
+    "@nuxt/image",
+    "@nuxtjs/sitemap",
   ],
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "sitemap.xml"],
+      ignore: ["/tak", "/konfiguration", "/checkout"],
+    },
+  },
+  site: {
+    url: "http://benchmarket.pl",
+  },
 
   css: ["~/assets/css/tailwind.css"],
   tailwindcss: {

@@ -19,6 +19,7 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/prismic": "^3.2.1",
+    "@nuxtjs/sitemap": "^5.2.0",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "@slicemachine/adapter-nuxt": "^0.3.40",
     "concurrently": "^8.2.2",
