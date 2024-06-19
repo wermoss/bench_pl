@@ -33,19 +33,8 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     // "nuxt-security",
     "@nuxt/image",
-    "@nuxtjs/sitemap",
+    // "@nuxtjs/sitemap",
   ],
-
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ["/", "sitemap.xml"],
-      ignore: ["/slice-simulator", "/about", "/api"],
-    },
-  },
-  site: {
-    url: "http://benchmarket.pl",
-  },
 
   css: ["~/assets/css/tailwind.css"],
   tailwindcss: {
