@@ -19,8 +19,9 @@ const settings = ref(results[1].data);
 // Usunięto zakomentowany kod, który odnosił się do uid
 
 useSeoMeta({
-  title: page.value?.meta_title ?? settings.value?.site_title,
-  description: page.value?.meta_description ?? settings.value?.meta_description,
+  title: " Benchmarket | Najczęściej zadawane pytania ",
+  description:
+    "Sprawdź odpowiedzi na najczęściej zadawane pytania dotyczące doradztwa podatkowego i cen transferowych. Profesjonalne doradztwo podatkowe.",
 });
 
 definePageMeta({
