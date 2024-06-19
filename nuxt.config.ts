@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ["/", "sitemap.xml"],
-      ignore: ["/tak", "/konfiguration", "/checkout"],
+      ignore: ["/slice-simulator", "/about", "/api"],
     },
   },
   site: {
