@@ -53,6 +53,13 @@
               {{ regon }}
             </div>
           </div>
+          <div class="uppercase pt-10">
+            <nuxt-link to="/polityka-prywatnosci" class="pr-4"
+              >Polityka prywatności</nuxt-link
+            >
+            |
+            <nuxt-link to="/faq" class="p-4">FAQ</nuxt-link>
+          </div>
         </div>
         <div class="col-span-2 lg:col-span-1"><FormFooter /></div>
       </div>
