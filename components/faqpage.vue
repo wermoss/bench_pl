@@ -1,18 +1,20 @@
 <script setup>
 import { ref, watchEffect } from "vue";
 const { client } = usePrismic();
-const { data: faq } = await useAsyncData("faq", () => client.getSingle("faq"));
+const { data: faq_page } = await useAsyncData("faq_page", () =>
+  client.getSingle("faq_page")
+);
 const visibleAnswersIndices = ref([]);
 const displayedQuestionsCount = ref(5); // Ustawienie domyślnej wartości
 const showMoreIncrement = ref(3); // Ustawienie domyślnej wartości
 
 // WatchEffect do aktualizacji displayedQuestionsCount i showMoreIncrement po załadowaniu danych
 watchEffect(() => {
-  if (faq.value && faq.value.data.start) {
-    displayedQuestionsCount.value = faq.value.data.start;
+  if (faq_page.value && faq_page.value.data.start) {
+    displayedQuestionsCount.value = faq_page.value.data.start;
   }
-  if (faq.value && faq.value.data.show_more) {
-    showMoreIncrement.value = faq.value.data.show_more; // Aktualizacja na podstawie danych Prismic
+  if (faq_page.value && faq_page.value.data.show_more) {
+    showMoreIncrement.value = faq_page.value.data.show_more; // Aktualizacja na podstawie danych Prismic
   }
 });
 
@@ -31,13 +33,10 @@ function showMoreQuestions() {
 </script>
 
 <template>
-  <section class="py-20">
-    <div class="max-w-3xl mx-auto text-center pb-20">
-      <h3 class="text-3xl lg:text-4xl px-8">{{ faq.data.title }}</h3>
-    </div>
-    <div class="mx-auto max-w-6xl px-8">
+  <section>
+    <div class="mx-auto max-w-6xl">
       <div
-        v-for="(item, index) in faq.data.questions.slice(
+        v-for="(item, index) in faq_page.data.questions.slice(
           0,
           displayedQuestionsCount
         )"
@@ -51,7 +50,7 @@ function showMoreQuestions() {
           <div>
             {{ item.question }}
           </div>
-          <div class="text-xl">
+          <div class="text-xl pl-4">
             <span v-if="visibleAnswersIndices.includes(index)">-</span>
             <span v-else>+</span>
           </div>
@@ -59,7 +58,7 @@ function showMoreQuestions() {
         <transition name="fade">
           <div
             v-if="visibleAnswersIndices.includes(index)"
-            class="answer mt-6 mb-5 pr-[40px] lg:pr-[100px] text-gray-700 italic"
+            class="answer mt-6 mb-5 pr-[40px] lg:pr-[80px] text-gray-700 italic"
           >
             {{ item.answer }}
           </div>
@@ -67,7 +66,7 @@ function showMoreQuestions() {
       </div>
       <!-- Show More button -->
       <button
-        v-if="displayedQuestionsCount < faq.data.questions.length"
+        v-if="displayedQuestionsCount < faq_page.data.questions.length"
         @click="showMoreQuestions"
         class="mt-4 px-4 py-2 bg-gray-900 text-white rounded"
       >

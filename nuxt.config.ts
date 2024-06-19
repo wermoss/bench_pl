@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     head: {
       title: "Prismic + Nuxt Minimal Starter",
       htmlAttrs: {
-        lang: "en",
+        lang: "pl",
       },
       meta: [
         { charset: "utf-8" },
@@ -22,6 +22,7 @@ export default defineNuxtConfig({
         { hid: "description", name: "description", content: "" },
         { name: "format-detection", content: "telephone=no" },
       ],
+
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
@@ -31,6 +32,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     "@nuxt/image",
+    // "nuxt-security",
   ],
 
   css: ["~/assets/css/tailwind.css"],

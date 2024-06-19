@@ -24,6 +24,7 @@
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "nuxt": "^3.11.1",
+    "nuxt-security": "^2.0.0-rc.6",
     "slice-machine-ui": "^2.1.0"
   },
   "dependencies": {

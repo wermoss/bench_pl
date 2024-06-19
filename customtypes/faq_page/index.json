@@ -1,0 +1,48 @@
+{
+  "format": "custom",
+  "id": "faq_page",
+  "label": "FAQ Page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "start": {
+        "type": "Number",
+        "config": {
+          "label": "Start",
+          "placeholder": ""
+        }
+      },
+      "show_more": {
+        "type": "Number",
+        "config": {
+          "label": "Show More",
+          "placeholder": ""
+        }
+      },
+      "questions": {
+        "type": "Group",
+        "config": {
+          "label": "Questions",
+          "repeat": true,
+          "fields": {
+            "question": {
+              "type": "Text",
+              "config": {
+                "label": "Question",
+                "placeholder": ""
+              }
+            },
+            "answer": {
+              "type": "Text",
+              "config": {
+                "label": "Answer",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

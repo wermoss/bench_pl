@@ -284,6 +284,85 @@ interface FaqDocumentData {
 export type FaqDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
 
+/**
+ * Item in *FAQ Page → Questions*
+ */
+export interface FaqPageDocumentDataQuestionsItem {
+  /**
+   * Question field in *FAQ Page → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_page.questions[].question
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  question: prismic.KeyTextField;
+
+  /**
+   * Answer field in *FAQ Page → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_page.questions[].answer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  answer: prismic.KeyTextField;
+}
+
+/**
+ * Content for FAQ Page documents
+ */
+interface FaqPageDocumentData {
+  /**
+   * Start field in *FAQ Page*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_page.start
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  start: prismic.NumberField;
+
+  /**
+   * Show More field in *FAQ Page*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_page.show_more
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  show_more: prismic.NumberField;
+
+  /**
+   * Questions field in *FAQ Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_page.questions[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  questions: prismic.GroupField<Simplify<FaqPageDocumentDataQuestionsItem>>;
+}
+
+/**
+ * FAQ Page document from Prismic
+ *
+ * - **API ID**: `faq_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FaqPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FaqPageDocumentData>,
+    "faq_page",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = MainTextSlice | PhotoSlice | RichTextSlice;
 
 /**
@@ -849,6 +928,7 @@ export type AllDocumentTypes =
   | BlogDocument
   | CaregoryDocument
   | FaqDocument
+  | FaqPageDocument
   | PageDocument
   | SettingsDocument
   | TemporaryDocument;
@@ -1242,6 +1322,9 @@ declare module "@prismicio/client" {
       FaqDocument,
       FaqDocumentData,
       FaqDocumentDataQuestionsItem,
+      FaqPageDocument,
+      FaqPageDocumentData,
+      FaqPageDocumentDataQuestionsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
