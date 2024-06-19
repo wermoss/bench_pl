@@ -32,6 +32,7 @@ const toggleMenu = () => {
           }"
           type="button"
           @click="toggleMenu"
+          aria-label="Otwórz menu"
         >
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>

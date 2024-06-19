@@ -43,7 +43,7 @@
           </div>
           <div class="flex flex-row pt-20">
             <div class="w-[100px] bg-black mr-8">
-              <img src="/img/bench-yellow.svg" />
+              <img src="/img/bench-yellow.svg" alt="Benchmarket" />
             </div>
             <div>
               <span class="font-bold">{{ companyName }}</span
