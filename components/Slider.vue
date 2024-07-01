@@ -11,7 +11,7 @@
   >
     <swiper-slide v-for="(slide, index) in slides" :key="index">
       <nuxt-img
-        :src="`https://res.cloudinary.com/dqoftbaal/image/upload/f_webp,fl_awebp,q_auto/${slide.image}`"
+        :src="`https://res.cloudinary.com/dy6p39lsz/image/upload/f_webp,fl_awebp,q_auto/v1/${slide.image}`"
         :alt="slide.alt"
         class="w-full h-[100svh] object-cover md:object-top"
         sizes="xs:100vw sm:100vw md:100vw lg:100vw"
@@ -75,8 +75,16 @@ export default {
   data() {
     return {
       slides: [
-        { image: "grzegorz", alt: "Grzegorz Plisz", text: "Transfer Pricing" },
-        { image: "michal", alt: "Michał Olejniczak", text: "Transfer Pricing" },
+        {
+          image: "Slider/grzegorz",
+          alt: "Grzegorz Plisz",
+          text: "Transfer Pricing",
+        },
+        {
+          image: "Slider/michal",
+          alt: "Michał Olejniczak",
+          text: "Transfer Pricing",
+        },
       ],
       modules: [Autoplay, Pagination, EffectFade],
     };

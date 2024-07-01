@@ -42,7 +42,7 @@
             <PrismicRichText :field="item.description" class="col-span-2" />
           </div>
           <div class="flex flex-row pt-20">
-            <div class="w-[100px] bg-black mr-8">
+            <div class="w-[60px] mr-8">
               <img src="/img/bench-yellow.svg" alt="Benchmarket" />
             </div>
             <div>
