@@ -23,7 +23,7 @@ const secondSerializer = serializer;
 <template>
   <section class="py-20">
     <div class="max-w-3xl mx-auto text-center pb-20">
-      <h3 class="text-3xl lg:text-4xl px-8">{{ sectionTitle }}</h3>
+      <h3 class="text-3xl lg:text-4xl px-8">-- {{ sectionTitle }}</h3>
     </div>
     <div
       class="mx-auto max-w-6xl px-8 grid grid-cols-1 md:grid-cols-2 gap-10 text-center text-xs"
