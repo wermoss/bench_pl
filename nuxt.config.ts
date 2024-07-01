@@ -32,8 +32,9 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     // "nuxt-security",
-    "@nuxt/image",
     // "@nuxtjs/sitemap",
+    "@nuxt/image",
+    "nuxt-gtag",
   ],
 
   css: ["~/assets/css/tailwind.css"],
@@ -52,6 +53,23 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  gtag: {
+    id: "G-LBLL16W6BE",
+    initCommands: [
+      // Setup up consent mode
+      [
+        "consent",
+        "default",
+        {
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+          ad_storage: "granted",
+          analytics_storage: "granted",
+          wait_for_update: 500,
+        },
+      ],
+    ],
   },
 
   prismic: {
